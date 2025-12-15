@@ -1,0 +1,147 @@
+Scalable React Application Architecture
+
+📖 Overview
+
+This project is built on a modular, content-driven architecture designed to separate logic, presentation, and data. The primary goal of this structure is to maintain high scalability while keeping the codebase clean and accessible for developers of all levels.
+
+By isolating content in a dedicated data layer and abstracting complex logic into custom hooks, this setup ensures that content updates do not require digging into component code, and UI changes do not risk breaking business logic.
+
+🏗️ Project Structure
+
+The codebase is organized to promote "Separation of Concerns." Here is a detailed breakdown of the directory structure:
+
+src/ Root
+
+The heart of the application.
+
+1. src/data/ 📄
+
+Purpose: The Single Source of Truth for content.
+
+What goes here: JSON files, TypeScript objects, or constants that contain text, image paths, configuration settings, and static data.
+
+Benefit: Allows non-developers or developers to update the site's text and assets without touching React components or JSX.
+
+Example: navigation.ts, heroContent.json, teamMembers.ts.
+
+2. src/hooks/ ⚓
+
+Purpose: Reusable logic and animation controllers.
+
+What goes here: Custom React hooks that handle side effects, state management, or complex animation sequences.
+
+Benefit: Keeps UI components "dumb" and focused only on rendering visuals, rather than managing messy useEffect chains.
+
+Example: useScrollAnimation.ts, useWindowSize.ts, useFetchData.ts.
+
+3. src/components/ 🧩
+
+Purpose: Modular, reusable UI building blocks.
+
+What goes here: Functional React components. These should ideally receive data via props (sourced from src/data/) or logic via hooks (from src/hooks/).
+
+Benefit: Promotes reusability. A Button component created here can be used in the Header, Footer, and Forms.
+
+Sub-structure recommendation:
+
+/ui: Atomic elements (Buttons, Inputs, Cards).
+
+/layout: Structural elements (Navbar, Footer, Grid).
+
+/sections: Large page sections (Hero, About, Contact).
+
+4. src/App.tsx 🎼
+
+Purpose: The Application Orchestrator.
+
+Role: Acts as the entry point for the component tree. It imports data, instantiates global hooks, and arranges the high-level components to form the final application layout.
+
+🚀 Getting Started
+
+Follow these steps to set up the project locally.
+
+Prerequisites
+
+Node.js (v16.0.0 or higher)
+
+npm or yarn
+
+Installation
+
+Clone the repository:
+
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+cd your-repo-name
+
+
+Install dependencies:
+
+npm install
+# or
+yarn install
+
+
+Start the development server:
+
+npm run dev
+# or
+yarn dev
+
+
+🛠️ Development Workflow
+
+How to Edit Content
+
+Navigate to src/data/.
+
+Open the relevant file (e.g., landingPage.ts).
+
+Modify strings, image URLs, or configuration flags.
+
+Save to see changes instantly reflected in the app.
+
+How to Add Animations
+
+Create a new hook in src/hooks/ (e.g., useFadeIn.ts).
+
+Implement the animation logic (using CSS classes, plain JS, or libraries like Framer Motion/GSAP).
+
+Import the hook into your target component in src/components/.
+
+Bind the ref or style returned by the hook to your JSX element.
+
+How to Create New Components
+
+Create a folder in src/components/ (e.g., src/components/TestimonialCard).
+
+Create your component file (index.tsx or TestimonialCard.tsx).
+
+Define the interface for its props.
+
+Import and use it in App.tsx or a parent component.
+
+📦 Tech Stack
+
+Framework: React
+
+Language: TypeScript
+
+Build Tool: Vite (Recommended)
+
+Styling: (Add your styling solution here, e.g., Tailwind CSS, SCSS, Styled Components)
+
+🤝 Contribution Guidelines
+
+Fork the repository.
+
+Create a feature branch (git checkout -b feature/AmazingFeature).
+
+Commit your changes (git commit -m 'Add some AmazingFeature').
+
+Push to the branch (git push origin feature/AmazingFeature).
+
+Open a Pull Request.
+
+📄 License
+
+Distributed under the MIT License. See LICENSE for more information.
