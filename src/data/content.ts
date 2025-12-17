@@ -5,6 +5,10 @@ export type Lang = 'zh' | 'en';
 
 export const CONTENT = {
   zh: {
+    site: {
+      title: "AI 治理觀念實驗室 - 中研院歐美所",
+      name: "AI 治理觀念實驗室"
+    },
     nav: {
       mission: "實驗室簡介",
       research: "研究領域",
@@ -33,7 +37,9 @@ export const CONTENT = {
       title: "參與成員",
       subtitle: "",
       join_title: "聯繫我們",
-      join_desc: ""
+      join_desc: "",
+      collaborators_title: "合作夥伴",
+      collaborators_desc: "查看合作學者"
     },
     activities: {
       title: "學術活動",
@@ -41,10 +47,16 @@ export const CONTENT = {
       back: "關閉"
     },
     footer: {
-      rights: "版權所有"
+      rights: "版權所有",
+      name: "AI 治理觀念實驗室",
+      location: "中央研究院，台北"
     }
   },
   en: {
+    site: {
+      title: "AI Governance Laboratory - IEAS, Academia Sinica",
+      name: "AI Governance Laboratory"
+    },
     nav: {
       mission: "Mission",
       research: "Research",
@@ -73,7 +85,9 @@ export const CONTENT = {
       title: "The Team",
       subtitle: "Experts from Law, Computer Science, and Social Sciences",
       join_title: "Join Us",
-      join_desc: "We are looking for passionate researchers."
+      join_desc: "We are looking for passionate researchers.",
+      collaborators_title: "Collaborators",
+      collaborators_desc: "View Partners"
     },
     activities: {
       title: "Activities & News",
@@ -81,78 +95,159 @@ export const CONTENT = {
       back: "Close"
     },
     footer: {
-      rights: "All rights reserved."
+      rights: "All rights reserved.",
+      name: "AI Governance Laboratory",
+      location: "Academia Sinica, Taipei"
     }
   }
 };
 
 export const MEMBERS = [
-  { 
+  {
     id: 1,
-    name: "Chih-Hsing Ho (何之行)", 
-    role_zh: "計畫主持人 / 副研究員", 
-    role_en: "Project Coordinator / Associate Research Fellow", 
+    name: "Chih-Hsing Ho (何之行)",
+    name_en: "Chih-Hsing Ho",
+    name_zh: "何之行",
+    role_zh: "計畫主持人 / 副研究員",
+    role_en: "Project Coordinator / Associate Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=CH&backgroundColor=2563eb&textColor=ffffff",
-    tags: ["Law", "Bioethics"] 
+    tags: ["Law", "Bioethics"]
   },
-  { 
+  {
     id: 2,
-    name: "Cheng-Hung Tsai (蔡政宏)", 
-    role_zh: "研究員", 
-    role_en: "Research Fellow", 
+    name: "Cheng-Hung Tsai (蔡政宏)",
+    name_en: "Cheng-Hung Tsai",
+    name_zh: "蔡政宏",
+    role_zh: "研究員",
+    role_en: "Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=CT&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Philosophy", "Epistemology"] 
+    tags: ["Philosophy", "Epistemology"]
   },
-  { 
+  {
     id: 3,
-    name: "Tzu-Wei Hung (洪子偉)", 
-    role_zh: "研究員", 
-    role_en: "Research Fellow", 
+    name: "Tzu-Wei Hung (洪子偉)",
+    name_en: "Tzu-Wei Hung",
+    name_zh: "洪子偉",
+    role_zh: "研究員",
+    role_en: "Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=TH&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Cognitive Science", "Philosophy"] 
+    tags: ["Cognitive Science", "Philosophy"]
   },
-  { 
+  {
     id: 4,
-    name: "Hung-Ju Chen (陳弘儒)", 
-    role_zh: "助研究員", 
-    role_en: "Assistant Research Fellow", 
+    name: "Hung-Ju Chen (陳弘儒)",
+    name_en: "Hung-Ju Chen",
+    name_zh: "陳弘儒",
+    role_zh: "助研究員",
+    role_en: "Assistant Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=HC&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Jurisprudence", "Democracy"] 
+    tags: ["Jurisprudence", "Democracy"]
+  },
+  {
+    id: 5,
+    name: "Jay Jian (簡士傑)",
+    name_en: "Jay Jian",
+    name_zh: "簡士傑",
+    role_zh: "助研究員",
+    role_en: "Assistant Research Fellow",
+    image: "https://api.dicebear.com/7.x/initials/svg?seed=JJ&backgroundColor=1e293b&textColor=ffffff",
+    tags: ["Law", "International Relations"]
+  },
+  {
+    id: 6,
+    name: "Bow-Yaw Wang (王柏堯)",
+    name_en: "Bow-Yaw Wang",
+    name_zh: "王柏堯",
+    role_zh: "資訊所研究員",
+    role_en: "Research Fellow, IIS",
+    image: "https://api.dicebear.com/7.x/initials/svg?seed=BW&backgroundColor=1e293b&textColor=ffffff",
+    tags: ["Computer Science", "Verification"]
+  },
+  {
+    id: 7,
+    name: "Tyng-Ruey Chuang (莊庭瑞)",
+    name_en: "Tyng-Ruey Chuang",
+    name_zh: "莊庭瑞",
+    role_zh: "資訊所副研究員",
+    role_en: "Associate Research Fellow, IIS",
+    image: "https://api.dicebear.com/7.x/initials/svg?seed=TC&backgroundColor=1e293b&textColor=ffffff",
+    tags: ["Information Science", "Open Source"]
   },
 ];
 
-export const POSTS = [
+export const COLLABORATORS = [
   {
-    id: "lecture-2025-12-09",
-    date: "2025-12-09",
-    year: "2025",
-    type: "Lecture",
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
-    title_zh: "邀請新加坡國立大學陳維曾教授演講",
-    title_en: "Guest Lecture by Prof. Weitseng Chen (NUS)",
-    content_zh: "講題：「美國的法治援助如何強化威權？台灣、南韓與中國的比較」。由何之行副研究員主持。探討法治推廣在特定政治脈絡下可能產生的非預期後果。",
-    content_en: "Topic: 'When Rule of Law Promotion Builds Authoritarianism'. Hosted by Dr. Chih-hsing Ho. Exploring the unintended consequences of rule of law promotion."
+    id: 1,
+    category_zh: "臺灣學術機構",
+    category_en: "Academic Institutions in Taiwan",
+    members: [
+      {
+        name: "Shao-Man Lee (李韶曼)",
+        name_zh: "李韶曼",
+        name_en: "Shao-Man Lee",
+        role_zh: "國立成功大學敏求智慧運算學院助理教授",
+        role_en: "Assistant Professor / NCKU Miin Wu School of Computing",
+        url: "https://sites.google.com/view/shaomanlee"
+      }
+    ]
   },
   {
-    id: "lecture-2025-10-08",
-    date: "2025-10-08",
-    year: "2025",
-    type: "Lecture",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-    title_zh: "智慧醫療中的 AI：平衡創新、倫理與法律",
-    title_en: "AI in Smart Healthcare: Balancing Innovation, Ethics and Law",
-    content_zh: "邀請丹麥哥本哈根法學院 Marcelo Corrales Compagnucci 博士演講。智慧醫療技術的進步帶來了巨大的機遇，但也引發了關於隱私、數據安全和患者權利的複雜問題。",
-    content_en: "Speaker: Dr. Marcelo Corrales Compagnucci (University of Copenhagen). Discussing the balance between innovation, ethics, and law in smart healthcare."
-  },
-  {
-    id: "conf-2025-07-03",
-    date: "2025-07-03",
-    year: "2025",
-    type: "Conference",
-    image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=800",
-    title_zh: "中研學術大會：AI 時代下的批判性思維",
-    title_en: "AS Conference: Critical Thinking in the AI Era",
-    content_zh: "本場次包含三場專題演講：\n1. 蔡政宏研究員：人工理性批判\n2. 陳弘儒助研究員：人工智慧與民主意涵\n3. 何之行副研究員：AI治理的邊界與難題",
-    content_en: "Featuring keynotes on Artificial Reason, Democratic Values in AI, and Boundaries of AI Governance."
+    id: 2,
+    category_zh: "國際合作",
+    category_en: "International Collaborative Partners",
+    members: [
+      {
+        name: "Yann Joly",
+        name_zh: "Yann Joly",
+        name_en: "Yann Joly",
+        role_zh: "James McGill Professor & Director of the Centre of Genomics and Policy (CGP), Faculty of Medicine and Health Sciences, McGill University, Canada",
+        role_en: "James McGill Professor & Director of the Centre of Genomics and Policy (CGP), Faculty of Medicine and Health Sciences, McGill University, Canada",
+        url: "https://genomic.medicine.mcgill.ca/investigator/yann-joly"
+      },
+      {
+        name: "Frank Pasquale",
+        name_zh: "Frank Pasquale",
+        name_en: "Frank Pasquale",
+        role_zh: "Professor, Cornell Law School, USA",
+        role_en: "Professor, Cornell Law School, USA",
+        url: "https://www.lawschool.cornell.edu/faculty-research/faculty-directory/frank-pasquale/"
+      },
+      {
+        name: "Marcelo Corrales Compagnucci",
+        name_zh: "Marcelo Corrales Compagnucci",
+        name_en: "Marcelo Corrales Compagnucci",
+        role_zh: "Associate Professor & Associate Director, Center for Advanced Studies in Biomedical Innovation Law (CeBIL), Faculty of Law, University of Copenhagen, Denmark",
+        role_en: "Associate Professor & Associate Director, Center for Advanced Studies in Biomedical Innovation Law (CeBIL), Faculty of Law, University of Copenhagen, Denmark",
+        url: "https://jura.ku.dk/english/staff/research/?pure=en%2Fpersons%2Fmarcelo-corrales-compagnucci(979af57e-b54d-455c-bb6e-8bece3619083).html"
+      },
+      {
+        name: "Alan Toy",
+        name_zh: "Alan Toy",
+        name_en: "Alan Toy",
+        role_zh: "Senior Lecturer, University of Auckland, New Zealand",
+        role_en: "Senior Lecturer, University of Auckland, New Zealand",
+        url: "https://profiles.auckland.ac.nz/alan-toy"
+      },
+      {
+        name: "Calvin Ho",
+        name_zh: "Calvin Ho",
+        name_en: "Calvin Ho",
+        role_zh: "Associate Professor, Faculty of Law, Monash University, Australia",
+        role_en: "Associate Professor, Faculty of Law, Monash University, Australia",
+        url: "https://research.monash.edu/en/persons/calvin-ho"
+      },
+      {
+        name: "Yueh-Hsuan Weng (翁岳暄)",
+        name_zh: "翁岳暄",
+        name_en: "Yueh-Hsuan Weng",
+        role_zh: "Associate Professor, Institute of Advanced Study (IAS), Kyushu University, Japan",
+        role_en: "Associate Professor, Institute of Advanced Study (IAS), Kyushu University, Japan",
+        url: "https://works.bepress.com/weng_yueh_hsuan/"
+      }
+    ]
   }
 ];
+
+// Import events from individual event files
+// To add a new event: Create a new .ts file in src/data/events/ using _template.ts
+export { POSTS } from './events';

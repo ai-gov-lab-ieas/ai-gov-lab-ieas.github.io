@@ -10,6 +10,7 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
   const [scrolled, setScrolled] = useState(false);
   const t = CONTENT[lang].nav;
+  const siteName = CONTENT[lang].site.name;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -30,12 +31,12 @@ export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
           ${scrolled ? 'bg-black/80 text-white scale-95' : 'bg-white/80 text-slate-900'}
         `}
       >
-        <div 
-          className="flex items-center gap-2 font-bold tracking-tight cursor-pointer mr-2" 
+        <div
+          className="flex items-center gap-2 font-bold tracking-tight cursor-pointer mr-2"
           onClick={() => window.scrollTo({top:0, behavior:'smooth'})}
         >
           <Brain size={20} className={scrolled ? "text-blue-400" : "text-blue-600"} />
-          <span className="hidden sm:inline">AI 治理觀念實驗室</span>
+          <span className="hidden sm:inline">{siteName}</span>
         </div>
 
         <div className={`w-px h-4 bg-current opacity-20 mx-1 hidden sm:block`} />

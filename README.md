@@ -1,6 +1,6 @@
-# AI Governance Concepts Lab Website
+# AI Governance Laboratory Website
 
-A modern, bilingual website for the AI Governance Concepts Laboratory at Academia Sinica's Institute of European and American Studies.
+A modern, bilingual website for the AI Governance Laboratoryoratory at Academia Sinica's Institute of European and American Studies.
 
 ## 📖 Overview
 
@@ -31,12 +31,24 @@ dec-ai-lab/
 │   │   ├── Hero.tsx               # Landing section
 │   │   ├── Mission.tsx            # Mission statement with Bento grid
 │   │   ├── Team.tsx               # Team members section
-│   │   └── Activities.tsx         # Events and news section
+│   │   └── Activities.tsx         # Events and news section (latest 3)
+│   ├── pages/
+│   │   ├── HomePage.tsx           # Main homepage layout
+│   │   ├── EventsPage.tsx         # All events archive
+│   │   └── EventDetailPage.tsx    # Single event detail page
 │   ├── data/
-│   │   └── content.ts             # All bilingual content (single source of truth)
-│   ├── App.tsx                    # Main application component
+│   │   ├── events/                # Individual event files
+│   │   │   ├── _template.ts       # Template for new events
+│   │   │   ├── types.ts           # Event type definition
+│   │   │   ├── index.ts           # Exports all events
+│   │   │   └── *.ts               # Individual event files
+│   │   └── content.ts             # All bilingual content
+│   ├── hooks/
+│   │   └── useIntersectionObserver.ts  # Scroll animation hook
+│   ├── App.tsx                    # Main app with routing
 │   ├── main.tsx                   # Application entry point
 │   └── index.css                  # Global styles and Tailwind imports
+├── HOW_TO_ADD_EVENTS.md           # Guide for adding new events
 ├── index.html                     # HTML entry point
 ├── vite.config.ts                 # Vite configuration
 ├── tsconfig.json                  # TypeScript configuration
@@ -49,9 +61,20 @@ dec-ai-lab/
 - **Framework**: React 18
 - **Language**: TypeScript 5
 - **Build Tool**: Vite 5
+- **Routing**: React Router DOM 6
 - **Styling**: TailwindCSS v4 with PostCSS
 - **Icons**: Lucide React
 - **Deployment**: GitHub Pages Ready
+
+## 🗺️ Routing Structure
+
+The website uses React Router for client-side navigation:
+
+- `/` - Homepage (Hero, Activities, Mission, Team)
+- `/event` - All events archive page (organized by year)
+- `/event/:eventId` - Individual event detail page
+
+The homepage displays the **latest 3 events** with a "View All Events" button linking to the full archive.
 
 ## 🚀 Getting Started
 
@@ -146,24 +169,39 @@ export const MEMBERS = [
 
 ### Adding News/Events
 
-Update the `POSTS` array in `src/data/content.ts`:
+**📖 See [HOW_TO_ADD_EVENTS.md](./HOW_TO_ADD_EVENTS.md) for a comprehensive guide!**
+
+**Each event is stored in its own `.ts` file** for easy management:
+
+1. Copy `src/data/events/_template.ts`
+2. Rename it (e.g., `lecture-2025-12-20.ts`)
+3. Fill in the event details
+4. Add import to `src/data/events/index.ts`
 
 ```typescript
-export const POSTS = [
-  {
-    id: "unique-id",
-    date: "2025-12-09",
-    year: "2025",
-    type: "Lecture",
-    image: "https://...",
-    title_zh: "中文標題",
-    title_en: "English Title",
-    content_zh: "中文內容",
-    content_en: "English Content"
-  },
-  // Add more posts...
-];
+// File: src/data/events/lecture-2025-12-20.ts
+import { Event } from './types';
+
+export const event: Event = {
+  id: "lecture-2025-12-20",  // Format: type-YYYY-MM-DD
+  date: "2025-12-20",
+  year: "2025",
+  type: "Lecture",
+  image: "https://...",
+  title_zh: "中文標題",
+  title_en: "English Title",
+  content_zh: "中文內容",
+  content_en: "English Content"
+};
+
+export default event;
 ```
+
+**Key Points:**
+- The latest 3 events automatically appear on the homepage
+- All events are viewable at `/event` page
+- Each event gets its own detail page at `/event/:eventId`
+- Events are automatically organized by year on the archive page
 
 ### Creating New Components
 
@@ -229,4 +267,4 @@ Distributed under the MIT License.
 ## 🔗 Links
 
 - Academia Sinica IEAS: [https://www.ea.sinica.edu.tw](https://www.ea.sinica.edu.tw)
-- AI Governance Concepts Lab: [Your Lab URL]
+- AI Governance Laboratory: [Your Lab URL]
