@@ -1,0 +1,31 @@
+import { Event } from './types';
+
+export const event: Event = {
+  id: "lecture-2024-03-20",
+  date: "2024-03-20",
+  year: "2024",
+  type: "Lecture",
+  image: "https://lh3.googleusercontent.com/sitesv/AAzXCkfBj6KsYb8eQq8lpkzBd-tAJVJF5LQDWmOZVCux_TkWIzSkPJuTRStxhtjLv92vxWN6u5HjVkZWfGzYtHMZLK45c0N2ZjZPJTp8POTbRH39S1ZeQXJmOC2QfoWY7pBQoOWUZwJRP0cwMBmBAJFnJYiUzbooOcFf8K1x6o8LfIpfWQ9UNs5e5-lpDlciE2nilkLVEWVJt7OF3g_HZs1W3bnJkhj-cPbptYAL=w1280",
+  title_zh: "邀請屏東科技大學張智皓助理教授演講",
+  title_en: "Guest Lecture by Dr. Jhih-Hao Jhang (National Pingtung University)",
+  content_zh: `講題：「AI的責任鴻溝與可能解方」
+
+講者：國立屏東科技大學通識教育中心助理教授 張智皓博士
+
+主持人：陳弘儒助研究員
+
+時間：2024年3月20日（星期三）上午10:00
+
+地點：中研院歐美所一樓會議室`,
+  content_en: `Topic: "The Responsibility Gap of AI and Possible Solutions"
+
+Speaker: Dr. Jhih-Hao Jhang, Assistant Professor, Center for General Education, National Pingtung University of Science and Technology
+
+Moderator: Dr. Hung-Ju Chen
+
+Date & Time: Wednesday, March 20, 2024, 10:00 AM
+
+Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+};
+
+export default event;
