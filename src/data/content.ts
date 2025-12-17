@@ -6,21 +6,21 @@ export type Lang = 'zh' | 'en';
 export const CONTENT = {
   zh: {
     nav: {
-      mission: "核心使命",
+      mission: "實驗室簡介",
       research: "研究領域",
-      team: "研究團隊",
+      team: "參與成員",
       events: "學術活動",
     },
     hero: {
       label: "中研院歐美研究所",
       title_line1: "治理",
-      title_highlight: "機器時代",
+      title_highlight: "人工智慧",
       title_line2: "的未來",
-      desc: "AI 治理觀念實驗室結合法律、哲學與資訊科學，探索人工智慧時代的倫理規範與社會衝擊。",
+      desc: "積極投入生成式 AI 的治理，藉由全球規範和在地形制的對話，進一步豐富全球 AI 治理的討論。",
       scroll: "向下探索"
     },
     mission: {
-      title: "核心使命",
+      title: "計畫緣起及目的",
       main_quote: "科技不存於真空。它被社會形塑，也形塑著社會。",
       box1_title: "黑箱問題",
       box1_desc: "解決演算法透明度與可解釋性的挑戰。",
@@ -30,10 +30,10 @@ export const CONTENT = {
       box3_desc: "法律 x 哲學 x 資訊科學"
     },
     team: {
-      title: "研究團隊",
-      subtitle: "來自不同領域的頂尖學者",
-      join_title: "加入我們",
-      join_desc: "尋找對 AI 治理有熱誠的研究夥伴"
+      title: "參與成員",
+      subtitle: "",
+      join_title: "聯繫我們",
+      join_desc: ""
     },
     activities: {
       title: "學術活動",
@@ -54,7 +54,7 @@ export const CONTENT = {
     hero: {
       label: "Academia Sinica IEAS",
       title_line1: "Governance for the",
-      title_highlight: "Machine Age",
+      title_highlight: "AI Age",
       title_line2: "",
       desc: "Bridging the gap between rapid technological advancement and human values through interdisciplinary research.",
       scroll: "Scroll to Explore"

@@ -35,7 +35,7 @@ export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
           onClick={() => window.scrollTo({top:0, behavior:'smooth'})}
         >
           <Brain size={20} className={scrolled ? "text-blue-400" : "text-blue-600"} />
-          <span className="hidden sm:inline">AI Gov.Lab</span>
+          <span className="hidden sm:inline">AI 治理觀念實驗室</span>
         </div>
 
         <div className={`w-px h-4 bg-current opacity-20 mx-1 hidden sm:block`} />
