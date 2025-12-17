@@ -35,6 +35,12 @@ interface BentoBoxProps {
   title?: string;
   subtitle?: string;
   delay?: string;
+  icon?: string;
+  preview?: string;
+  fullContent?: string;
+  readMoreText?: string;
+  readLessText?: string;
+  expandable?: boolean;
 }
 
 export const BentoBox: React.FC<BentoBoxProps> = ({ 
@@ -42,9 +48,24 @@ export const BentoBox: React.FC<BentoBoxProps> = ({
   className = "", 
   title, 
   subtitle,
-  delay = "0ms" 
+  delay = "0ms",
+  icon,
+  preview,
+  fullContent,
+  readMoreText = "Read More",
+  readLessText = "Read Less",
+  expandable = false
 }) => {
   const [ref, isVisible] = useIntersectionObserver();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  // Show expandable content if provided, otherwise show children
+  const hasExpandableContent = expandable && preview && fullContent;
   
   return (
     <div 
@@ -60,9 +81,64 @@ export const BentoBox: React.FC<BentoBoxProps> = ({
       `}
     >
       <div className="relative z-10 h-full flex flex-col">
-        {title && <h3 className="text-xl font-bold text-slate-900 mb-1">{title}</h3>}
-        {subtitle && <p className="text-slate-500 text-sm mb-4 font-medium">{subtitle}</p>}
-        {children}
+        {/* Header with icon and title */}
+        <div className="flex items-center gap-3 mb-4">
+          {icon && (
+            <div className="text-2xl p-2 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100">
+              {icon}
+            </div>
+          )}
+          <div className="flex-1">
+            {title && <h3 className="text-xl font-bold text-slate-900 mb-1">{title}</h3>}
+            {subtitle && <p className="text-slate-500 text-sm font-medium">{subtitle}</p>}
+          </div>
+        </div>
+
+        {/* Content area */}
+        <div className="flex-1">
+          {hasExpandableContent ? (
+            <>
+              {/* Preview content */}
+              <p className="text-slate-600 leading-relaxed mb-4">
+                {preview}
+              </p>
+              
+              {/* Expandable full content */}
+              <div 
+                ref={contentRef}
+                className={`overflow-hidden transition-all duration-500 ease-out ${
+                  isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="pt-4 border-t border-slate-100">
+                  <p className="text-slate-600 leading-relaxed whitespace-pre-line">
+                    {fullContent}
+                  </p>
+                </div>
+              </div>
+
+              {/* Read More/Less button */}
+              <button
+                onClick={toggleExpanded}
+                className="mt-4 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200 group/btn"
+              >
+                <span>{isExpanded ? readLessText : readMoreText}</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 ${
+                    isExpanded ? 'rotate-180' : ''
+                  }`}
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </>
+          ) : (
+            children
+          )}
+        </div>
       </div>
       
       {/* Subtle Background Gradient on Hover */}
