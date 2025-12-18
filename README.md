@@ -22,7 +22,7 @@ This project features a content-driven architecture with a modern, Apple/Google-
 ## 🏗️ Project Structure
 
 ```
-dec-ai-lab/
+ai-gov-lab-ieas.github.io/
 ├── src/
 │   ├── components/
 │   │   ├── ui/
@@ -87,8 +87,8 @@ The homepage displays the **latest 3 events** with a "View All Events" button li
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/dec-ai-lab.git
-cd dec-ai-lab
+git clone https://github.com/your-username/ai-gov-lab-ieas.github.io.git
+cd ai-gov-lab-ieas.github.io
 ```
 
 2. Install dependencies:
