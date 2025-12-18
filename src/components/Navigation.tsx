@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Brain, Globe } from 'lucide-react';
 import { Lang, CONTENT } from '../data/content';
 
@@ -9,6 +10,8 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const t = CONTENT[lang].nav;
   const siteName = CONTENT[lang].site.name;
 
@@ -19,7 +22,13 @@ export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    // If we're on the home page, scroll to the section
+    if (location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Otherwise, navigate to home page with hash
+      navigate(`/#${id}`);
+    }
   };
 
   return (
@@ -33,7 +42,13 @@ export const Navigation: React.FC<NavigationProps> = ({ lang, setLang }) => {
       >
         <div
           className="flex items-center gap-2 font-bold tracking-tight cursor-pointer mr-2"
-          onClick={() => window.scrollTo({top:0, behavior:'smooth'})}
+          onClick={() => {
+            if (location.pathname === '/') {
+              window.scrollTo({top:0, behavior:'smooth'});
+            } else {
+              navigate('/');
+            }
+          }}
         >
           <Brain size={20} className={scrolled ? "text-blue-400" : "text-blue-600"} />
           <span className="hidden sm:inline">{siteName}</span>
