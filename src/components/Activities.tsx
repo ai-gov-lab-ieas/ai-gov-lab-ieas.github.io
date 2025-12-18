@@ -24,11 +24,19 @@ export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
               to={`/event/${post.id}`}
               className="group cursor-pointer bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
-              <div className="aspect-video relative overflow-hidden">
+              <div className="aspect-square overflow-hidden bg-slate-100 relative">
+                {/* Blurred background */}
+                <img
+                  src={post.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
+                  aria-hidden="true"
+                />
+                {/* Main image */}
                 <img
                   src={post.image}
                   alt={lang === 'zh' ? post.title_zh : post.title_en}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="relative w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm uppercase tracking-wide">
                   {post.type}

@@ -133,7 +133,7 @@ export const MEMBERS = [
     role_zh: "計畫主持人 / 副研究員",
     role_en: "Project Coordinator / Associate Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=CH&backgroundColor=2563eb&textColor=ffffff",
-    tags: ["Law", "Bioethics"]
+    tags: []
   },
   {
     id: 2,
@@ -143,7 +143,7 @@ export const MEMBERS = [
     role_zh: "研究員",
     role_en: "Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=CT&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Philosophy", "Epistemology"]
+    tags: []
   },
   {
     id: 3,
@@ -153,7 +153,7 @@ export const MEMBERS = [
     role_zh: "研究員",
     role_en: "Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=TH&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Cognitive Science", "Philosophy"]
+    tags: []
   },
   {
     id: 4,
@@ -163,7 +163,7 @@ export const MEMBERS = [
     role_zh: "助研究員",
     role_en: "Assistant Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=HC&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Jurisprudence", "Democracy"]
+    tags: []
   },
   {
     id: 5,
@@ -173,7 +173,7 @@ export const MEMBERS = [
     role_zh: "助研究員",
     role_en: "Assistant Research Fellow",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=JJ&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Law", "International Relations"]
+    tags: []
   },
   {
     id: 6,
@@ -183,7 +183,7 @@ export const MEMBERS = [
     role_zh: "資訊所研究員",
     role_en: "Research Fellow, IIS",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=BW&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Computer Science", "Verification"]
+    tags: []
   },
   {
     id: 7,
@@ -193,7 +193,7 @@ export const MEMBERS = [
     role_zh: "資訊所副研究員",
     role_en: "Associate Research Fellow, IIS",
     image: "https://api.dicebear.com/7.x/initials/svg?seed=TC&backgroundColor=1e293b&textColor=ffffff",
-    tags: ["Information Science", "Open Source"]
+    tags: []
   },
 ];
 
