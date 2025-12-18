@@ -19,12 +19,15 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {MEMBERS.map((member, idx) => (
-              <div
+              <a
                 key={member.id}
+                href={member.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 // @ts-ignore
                 ref={ref}
                 style={{ transitionDelay: `${idx * 50}ms` }}
-                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 opacity-0 translate-y-8"
+                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 opacity-0 translate-y-8 block cursor-pointer"
               >
                 <div className="aspect-[3/4] overflow-hidden bg-slate-100">
                   <img
@@ -37,7 +40,10 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                 {/* Overlay Content */}
                 <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-white font-bold text-xs leading-tight mb-1">{member.name}</h3>
+                    <div className="flex items-center gap-1 mb-1">
+                      <h3 className="text-white font-bold text-xs leading-tight">{member.name}</h3>
+                      <ExternalLink size={12} className="text-white/80 flex-shrink-0" />
+                    </div>
                     <p className="text-blue-300 text-[10px] font-medium mb-2">{lang === 'zh' ? member.role_zh : member.role_en}</p>
                     <div className="flex flex-wrap gap-1">
                       {member.tags.map(tag => (
@@ -54,7 +60,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                    <h3 className="text-slate-900 font-bold text-xs leading-tight">{lang === 'zh' ? member.name_zh : member.name_en}</h3>
                    <p className="text-slate-500 text-[10px] mt-0.5">{lang === 'zh' ? member.role_zh.split('/')[0].trim() : member.role_en.split('/')[0].trim()}</p>
                 </div>
-              </div>
+              </a>
             ))}
 
             {/* Collaborators Card */}
