@@ -18,7 +18,7 @@ export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
 
         {/* Grid Layout for Latest 3 Events */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map((post, idx) => (
+          {latestPosts.map((post) => (
             <Link
               key={post.id}
               to={`/event/${post.id}`}

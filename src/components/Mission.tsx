@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Scale, ArrowRight, ChevronRight } from 'lucide-react';
+import { Shield, ChevronRight } from 'lucide-react';
 import { BentoBox } from './ui/BentoBox';
 import { MissionModal } from './ui/MissionModal';
 import { Lang, CONTENT } from '../data/content';

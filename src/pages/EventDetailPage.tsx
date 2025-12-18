@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Tag, MapPin } from 'lucide-react';
-import { Lang, CONTENT, POSTS } from '../data/content';
+import { ArrowLeft, Calendar } from 'lucide-react';
+import { Lang, POSTS } from '../data/content';
 
 interface EventDetailPageProps {
   lang: Lang;
