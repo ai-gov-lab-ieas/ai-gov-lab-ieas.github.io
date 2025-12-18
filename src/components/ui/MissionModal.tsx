@@ -42,11 +42,10 @@ export const MissionModal: React.FC<MissionModalProps> = ({
         {/* Content */}
         <div className="p-8 overflow-y-auto max-h-[calc(90vh-120px)]">
           <div className="prose prose-lg max-w-none">
-            {content.split('\\n\\n').map((paragraph, index) => (
-              <p key={index} className="text-slate-700 leading-relaxed mb-6">
-                {paragraph}
-              </p>
-            ))}
+            <div
+              className="text-slate-700 leading-relaxed mb-6"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
           </div>
         </div>
         
