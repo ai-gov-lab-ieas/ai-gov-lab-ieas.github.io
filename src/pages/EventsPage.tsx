@@ -56,11 +56,19 @@ export const EventsPage: React.FC<EventsPageProps> = ({ lang }) => {
                     to={`/event/${post.id}`}
                     className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100"
                   >
-                    <div className="aspect-[16/10] overflow-hidden bg-slate-100">
+                    <div className="aspect-square overflow-hidden bg-slate-100 relative">
+                      {/* Blurred background */}
+                      <img
+                        src={post.image}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
+                        aria-hidden="true"
+                      />
+                      {/* Main image */}
                       <img
                         src={post.image}
                         alt={lang === 'zh' ? post.title_zh : post.title_en}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="relative w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>
                     <div className="p-6">

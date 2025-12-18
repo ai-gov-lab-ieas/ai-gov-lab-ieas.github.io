@@ -36,11 +36,19 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({ lang }) => {
 
         {/* Event Header */}
         <div className="bg-white rounded-3xl overflow-hidden shadow-lg mb-8">
-          <div className="aspect-[21/9] overflow-hidden bg-slate-100">
+          <div className="aspect-[21/9] overflow-hidden bg-slate-100 relative">
+            {/* Blurred background */}
+            <img
+              src={post.image}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
+              aria-hidden="true"
+            />
+            {/* Main image */}
             <img
               src={post.image}
               alt={lang === 'zh' ? post.title_zh : post.title_en}
-              className="w-full h-full object-cover"
+              className="relative w-full h-full object-contain"
             />
           </div>
 

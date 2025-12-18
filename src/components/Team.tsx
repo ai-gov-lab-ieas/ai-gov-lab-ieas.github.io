@@ -60,7 +60,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
             {/* Collaborators Card */}
             <button
               onClick={() => setShowModal(true)}
-              className="bg-blue-50 rounded-2xl border border-blue-200 flex flex-col items-center justify-center p-4 text-center hover:bg-blue-100 hover:border-blue-300 transition-colors cursor-pointer group min-h-[200px]"
+              className="aspect-[3/4] bg-blue-50 rounded-2xl border border-blue-200 flex flex-col items-center justify-center p-4 text-center hover:bg-blue-100 hover:border-blue-300 transition-colors cursor-pointer group"
             >
                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-500 group-hover:text-blue-600 mb-3 transition-colors shadow-sm group-hover:scale-110 duration-300">
                   <Users size={20} />
@@ -70,7 +70,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
             </button>
 
             {/* Join Us Card */}
-            <div className="bg-slate-100 rounded-2xl border border-dashed border-slate-300 flex flex-col items-center justify-center p-4 text-center hover:bg-blue-50 hover:border-blue-200 transition-colors cursor-pointer group min-h-[200px]">
+            <div className="aspect-[3/4] bg-slate-100 rounded-2xl border border-dashed border-slate-300 flex flex-col items-center justify-center p-4 text-center hover:bg-blue-50 hover:border-blue-200 transition-colors cursor-pointer group">
                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-slate-400 group-hover:text-blue-600 mb-3 transition-colors shadow-sm group-hover:scale-110 duration-300">
                   <Plus size={20} />
                </div>
