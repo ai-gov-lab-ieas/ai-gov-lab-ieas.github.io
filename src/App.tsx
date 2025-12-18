@@ -28,7 +28,7 @@ function App() {
   }, [lang]);
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="bg-[#FAFAFA] min-h-screen selection:bg-blue-500 selection:text-white font-sans antialiased">
         <Navigation lang={lang} setLang={setLang} />
         <ScrollToTop />
