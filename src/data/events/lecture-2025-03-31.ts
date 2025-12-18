@@ -5,9 +5,9 @@ export const event: Event = {
   date: "2025-03-31",
   year: "2025",
   type: "Lecture",
-  image: "https://lh3.googleusercontent.com/sitesv/AAzXCkcyIC5AZKQLDMhcGnwkQS58-4CIPVHFLYOMorXK_sRzhKVqUsjLhxiub2SxyofK8JIjPWrB1kVcsnpT95tGS_aNTyOCyakDxAahNJWXNDxfN5mpe5_7YyPuZRnbLICSa-bsh1DKpIcJN9_l_MQo3zrdUuOSrYJ3OzpsG6-VLixFiCpAoHIPbE78MqqoMG-fH3CF2DrFiPxtwaP7q_OfMoMcBvL4of_7KK7oJJY=w1280",
-  title_zh: "邀請中研院人社中心陳禹仲副研究員演講",
-  title_en: "Guest Lecture by Dr. Alvin Chen (Academia Sinica)",
+  image: "/images/events/2025/lecture-2025-03-31.jpg",
+  title_zh: "Artificial Intelligence and Artificial Moral Agents",
+  title_en: "Artificial Intelligence and Artificial Moral Agents",
   content_zh: `講題：「Artificial Intelligence and Artificial Moral Agents」
 
 講者：中央研究院人文社會科學研究中心陳禹仲副研究員
@@ -23,9 +23,9 @@ export const event: Event = {
 
 Speaker: Dr. Alvin Chen, Associate Research Fellow, Research Center for Humanities and Social Sciences, Academia Sinica
 
-Moderator: Dr. Chih-hsing Ho
+Moderator: Dr. Chih-hsing Ho / Associate Research Fellow, Institute of European and American Studies, Academia Sinica
 
-Discussant: Dr. Hung-Ju Chen
+Discussant: Dr. Hung-Ju Chen / Assistant Research Fellow, Institute of European and American Studies, Academia Sinica
 
 Date & Time: Monday, March 31, 2025, 2:30 PM
 

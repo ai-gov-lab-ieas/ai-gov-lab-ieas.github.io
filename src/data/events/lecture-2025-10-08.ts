@@ -6,10 +6,24 @@ export const event: Event = {
   year: "2025",
   type: "Lecture",
   image: "/images/events/2025/lecture-2025-10-08.jpg",
-  title_zh: "智慧醫療中的 AI：平衡創新、倫理與法律",
+  title_zh: "AI in Smart Healthcare: Balancing Innovation, Ethics and Law",
   title_en: "AI in Smart Healthcare: Balancing Innovation, Ethics and Law",
-  content_zh: "邀請丹麥哥本哈根法學院 Marcelo Corrales Compagnucci 博士演講。智慧醫療技術的進步帶來了巨大的機遇，但也引發了關於隱私、數據安全和患者權利的複雜問題。",
-  content_en: "Speaker: Dr. Marcelo Corrales Compagnucci (University of Copenhagen). Discussing the balance between innovation, ethics, and law in smart healthcare.",
+  content_zh: `
+  「AI治理觀念實驗室」邀請短訪人員 Marcelo Corrales Compagnucci 博士（丹麥哥本哈根法學院副教授）2025年10月8日（星期三）來所發表演講，由何之行副研究員主持，講題為「AI in Smart Healthcare: Balancing Innovation, Ethics and Law」。
+  `,
+  content_en: `
+  Speaker: Dr. Marcelo Corrales Compagnucci (Associate
+
+         Professor, Center for Advanced Studies in Bioscience Innovation Law (CeBIL), University of Copenhagen, Faculty of Law)
+
+Moderator: Dr. Chih-hsing Ho (Associate Research Fellow, Institute of European and American Studies, Academia Sinica)
+
+Time  ：14:00~16:00 P.M. Wednesday , October 8, 2025.
+
+Venue：1st Floor Conference Room, Institute of European
+
+              and American Studies, Academia Sinica
+  `,
 };
 
 export default event;

@@ -5,12 +5,12 @@ export const event: Event = {
   date: "2024-09-26",
   year: "2024",
   type: "Lecture",
-  image: "https://lh3.googleusercontent.com/sitesv/AAzXCkfPLugpP9UHMH3jF5reL7Ml-rqEX6k1I0968r__20rigiab8x0qv3FYqDskbgH_0HHdLH-t2Up2bIZ16s35oGwpZvlPGveiwXKvFZuDO_9RyFQp40SxxSxVkFw97-HYgQihEML-8lhn9_URCC7xeouROYlATf7f-3t1ILn128driamnpIIuhhdzYq95t6i3ALOxJK9VOQBJxbkNAw6G0JQJP1N6NYQW9xWwd3w=w1280",
-  title_zh: "邀請哈邁德·本·哈利法大學Barry Solaiman博士演講",
-  title_en: "Guest Lecture by Dr. Barry Solaiman (HBKU)",
+  image: "/images/events/2024/lecture-2024-09-26.jpg",
+  title_zh: "Regulating the lifecycle of Healthcare AI: Considerations from Research to Deployment",
+  title_en: "Regulating the lifecycle of Healthcare AI: Considerations from Research to Deployment",
   content_zh: `講題：「Regulating the lifecycle of Healthcare AI: Considerations from Research to Deployment」
 
-講者：哈邁德·本·哈利法大學法學院副院長兼助理教授 Dr. Barry Solaiman
+講者：Dr. Barry Solaiman (Associate  Dean & Assistant Professor College of Law Hamad Bin Khalifa University, HBKU, Qatar)
 
 主持人：何之行副研究員
 
@@ -21,7 +21,7 @@ export const event: Event = {
 
 Speaker: Dr. Barry Solaiman, Associate Dean and Assistant Professor, College of Law, Hamad Bin Khalifa University, Qatar
 
-Moderator: Dr. Chih-hsing Ho
+Moderator: Dr. Chih-hsing Ho / Associate Research Fellow, Institute of European and American Studies, Academia Sinica
 
 Date & Time: Thursday, September 26, 2024, 3:00 PM
 
