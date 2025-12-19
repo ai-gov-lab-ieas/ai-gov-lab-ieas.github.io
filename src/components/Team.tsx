@@ -39,11 +39,11 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                     />
                   </div>
 
-                  {/* Main image - full image with transparency before hover */}
+                  {/* Main image */}
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-contain relative z-10 transition-all duration-700 group-hover:scale-105 opacity-50 group-hover:opacity-100"
+                    className="w-full h-full object-contain relative z-10 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
                   />
                 </div>
 
