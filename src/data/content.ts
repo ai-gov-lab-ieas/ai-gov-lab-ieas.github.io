@@ -78,7 +78,7 @@ export const CONTENT = {
       label: "Academia Sinica IEAS",
       title_line1: "Governance of",
       title_highlight: "Generative AI",
-      title_line2: "in Future Society",
+      title_line2: "in the Future Society",
       desc: "Engaging in the governance of Generative AI, enriching global discussions on AI governance through a dialogue between global norms and local forms.",
       scroll: "Scroll to Explore"
     },
