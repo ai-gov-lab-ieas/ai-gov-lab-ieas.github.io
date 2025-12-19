@@ -48,7 +48,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                 </div>
 
                 {/* Overlay Content */}
-                <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <div className="flex items-center gap-1 mb-1">
                       <h3 className="text-white font-bold text-xs leading-tight">{member.name}</h3>
@@ -66,7 +66,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                 </div>
 
                 {/* Default State (Visible when not hovering) */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-white group-hover:translate-y-full transition-transform duration-300 border-t border-slate-50">
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-white group-hover:translate-y-full transition-transform duration-300 border-t border-slate-50 z-20">
                    <h3 className="text-slate-900 font-bold text-xs leading-tight">{lang === 'zh' ? member.name_zh : member.name_en}</h3>
                    <p className="text-slate-500 text-[10px] mt-0.5">{lang === 'zh' ? member.role_zh.split('/')[0].trim() : member.role_en.split('/')[0].trim()}</p>
                 </div>
