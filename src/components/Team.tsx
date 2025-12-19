@@ -29,11 +29,21 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                 style={{ transitionDelay: `${idx * 50}ms` }}
                 className="group relative bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 opacity-0 translate-y-8 block cursor-pointer"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-slate-100">
+                <div className="aspect-[3/4] overflow-hidden relative">
+                  {/* Blurred background to fill blank spaces */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={member.image}
+                      alt=""
+                      className="w-full h-full object-cover blur-2xl scale-110"
+                    />
+                  </div>
+
+                  {/* Main image - full image with transparency before hover */}
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-contain relative z-10 transition-all duration-700 group-hover:scale-105 opacity-50 group-hover:opacity-100"
                   />
                 </div>
 

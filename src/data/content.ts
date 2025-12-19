@@ -176,7 +176,7 @@ export const MEMBERS = [
     name_zh: "簡士傑",
     role_zh: "助研究員",
     role_en: "Assistant Research Fellow",
-    image: "/images/team/Jay-Jian.jpg",
+    image: "/images/team/Jay-Jian.jpeg",
     tags: [],
     url: "https://www.ea.sinica.edu.tw/Content_People_Page.aspx?pid=4&uid=8&peoid=203&lang=e"
   },
