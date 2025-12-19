@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import { Lang, POSTS } from '../data/content';
+import { formatDate } from '../utils/dateFormat';
 
 interface EventDetailPageProps {
   lang: Lang;
@@ -60,7 +61,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({ lang }) => {
               </span>
               <div className="flex items-center gap-2 text-slate-500 text-sm">
                 <Calendar size={16} />
-                <span>{post.date}</span>
+                <span>{formatDate(post.date)}</span>
               </div>
             </div>
 

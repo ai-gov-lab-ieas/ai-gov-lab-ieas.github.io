@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, ChevronRight } from 'lucide-react';
 import { Lang, CONTENT, POSTS } from '../data/content';
+import { formatDate } from '../utils/dateFormat';
 
 export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
   const t = CONTENT[lang].activities;
@@ -46,7 +47,7 @@ export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3 text-xs font-bold text-slate-400">
                   <Calendar size={12} />
-                  {post.date}
+                  {formatDate(post.date)}
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
                   {lang === 'zh' ? post.title_zh : post.title_en}
