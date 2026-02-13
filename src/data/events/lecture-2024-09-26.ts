@@ -14,6 +14,9 @@ export const event: Event = {
 
 主持人：何之行副研究員
 
+Abstract: This talk addresses the comprehensive regulation of artificial intelligence (AI) across its entire lifecycle in the healthcare sector. Beginning with the research phase, it highlights the urgent need for robust guidelines and certification processes to ensure that AI technologies are developed in compliance with ethical and safety standards.
+Moving into the approval stage, the discussion explores how AI systems can be effectively regulated under existing medical device frameworks, emphasising the need for tailored regulations that consider the unique challenges posed by AI. Finally, the talk delves into the deployment of AI in clinical practice, examining the gaps in current laws and the pressing need for a coherent and consistent regulatory framework that can adapt to the rapid advancements in AI technology. The talk argues that the existing legal structures are inadequate, often inconsistent, and fail to address the complexities of AI in healthcare, making the case for a comprehensive overhaul of regulatory approaches to ensure patient safety, efficacy, and ethical integrity throughout the AI lifecycle.
+
 時間：2024年9月26日（星期四）下午3:00
 
 地點：中研院歐美所一樓會議室`,
@@ -22,6 +25,9 @@ export const event: Event = {
 Speaker: Dr. Barry Solaiman, Associate Dean and Assistant Professor, College of Law, Hamad Bin Khalifa University, Qatar
 
 Moderator: Dr. Chih-hsing Ho / Associate Research Fellow, Institute of European and American Studies, Academia Sinica
+
+Abstract: This talk addresses the comprehensive regulation of artificial intelligence (AI) across its entire lifecycle in the healthcare sector. Beginning with the research phase, it highlights the urgent need for robust guidelines and certification processes to ensure that AI technologies are developed in compliance with ethical and safety standards.
+Moving into the approval stage, the discussion explores how AI systems can be effectively regulated under existing medical device frameworks, emphasising the need for tailored regulations that consider the unique challenges posed by AI. Finally, the talk delves into the deployment of AI in clinical practice, examining the gaps in current laws and the pressing need for a coherent and consistent regulatory framework that can adapt to the rapid advancements in AI technology. The talk argues that the existing legal structures are inadequate, often inconsistent, and fail to address the complexities of AI in healthcare, making the case for a comprehensive overhaul of regulatory approaches to ensure patient safety, efficacy, and ethical integrity throughout the AI lifecycle.
 
 Date & Time: Thursday, September 26, 2024, 3:00 PM
 

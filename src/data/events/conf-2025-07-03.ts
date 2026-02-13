@@ -30,6 +30,8 @@ export const event: Event = {
 演講者：何之行副研究員
 
 講題：AI治理的邊界與難題: 從歐盟人工智慧法案談起
+
+議程連結：https://drive.google.com/file/d/1E63HdUzMoOra7JL9kGWpXWwbvqKLPzdT/view
   `,
   content_en: `
 Time: 3:30~5:30 P.M., Thursday, July 3, 2025
@@ -50,6 +52,8 @@ Speaker III: Chih-hsing Ho
 Associate Research Fellow, Institute of European and American Studies, Academia Sinica
 
 Title: The Boundaries and Challenges of AI Governance: Reflections from the EU AI Act
+
+Link to agenda: https://drive.google.com/file/d/1E63HdUzMoOra7JL9kGWpXWwbvqKLPzdT/view
   `,
 };
 

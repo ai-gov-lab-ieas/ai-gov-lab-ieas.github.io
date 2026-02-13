@@ -16,7 +16,11 @@ export const event: Event = {
 
 講題：「LLMs and Just Transitions in One Digital Health」
 
-演講人包含:中研院資訊科學研究所王柏堯研究員、莊庭瑞副研究員、黃瀚萱副研究員、中研院人社中心蔡宗翰研究員與陳禹仲副研究員、國立清華大學科技法律研究所李怡俐副教授、國立成功大學政治學系林昕璇助理教授、南臺科技大學財經法律研究所郭戎晉副教授、與本所洪子偉研究員、何之行副研究員等，共同探討「生成式AI治理」相關議題。`,
+演講人包含:中研院資訊科學研究所王柏堯研究員、莊庭瑞副研究員、黃瀚萱副研究員、中研院人社中心蔡宗翰研究員與陳禹仲副研究員、國立清華大學科技法律研究所李怡俐副教授、國立成功大學政治學系林昕璇助理教授、南臺科技大學財經法律研究所郭戎晉副教授、與本所洪子偉研究員、何之行副研究員等，共同探討「生成式AI治理」相關議題。
+
+議程連結：https://www.ea.sinica.edu.tw/Admin/ashx/GetFile.ashx?ID=57052
+
+`,
   content_en: `Date: Tuesday, June 3, 2025
 
 Venue: 1F Conference Room, Institute of European and American Studies, Academia Sinica
@@ -43,7 +47,11 @@ Dr. Yi-Li Lee (Associate Professor / Institute of Law for Science and Technology
 
 Dr. Hsin-Hsuan Lin (Assistant Professor/ Department of Political Science, National Cheng Kung University) 
 
-Dr. Jung-Chin Kuo (Associate Professor / Institute of Financial & Economic Law (IFEL), Southern Taiwan University of Science & Technology (STUST)`,
+Dr. Jung-Chin Kuo (Associate Professor / Institute of Financial & Economic Law (IFEL), Southern Taiwan University of Science & Technology (STUST)
+
+Link to agenda: https://www.ea.sinica.edu.tw/Admin/ashx/GetFile.ashx?ID=57052
+
+`,
 };
 
 export default event;

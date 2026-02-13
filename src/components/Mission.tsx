@@ -27,7 +27,7 @@ export const Mission: React.FC<{ lang: Lang }> = ({ lang }) => {
                     <Shield size={32} className="text-blue-400" />
                  </div>
                  <div className="text-sm text-slate-400">
-                    AI Governance <br/>Laboratory
+                    AI Governance <br/>Laboratory 本實驗室獲得中研院關鍵突破種子計畫之支持，以生成式AI之未來治理為主題進行跨領域研究。
                  </div>
               </div>
             </div>
