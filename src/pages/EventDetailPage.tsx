@@ -72,9 +72,13 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({ lang }) => {
 
             {/* Content */}
             <div className="prose prose-slate max-w-none">
-              <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line">
-                {lang === 'zh' ? post.content_zh : post.content_en}
-              </p>
+              <p
+                className="text-lg text-slate-700 leading-relaxed"
+                dangerouslySetInnerHTML={{
+                  __html: (lang === 'zh' ? post.content_zh : post.content_en)
+                    .replace(/\n/g, '<br />'),
+                }}
+              />
             </div>
           </div>
         </div>
