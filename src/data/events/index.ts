@@ -26,9 +26,13 @@ import lecture20240415 from './lecture-2024-04-15';
 import lecture20240327 from './lecture-2024-03-27';
 import lecture20240320 from './lecture-2024-03-20';
 import lecture20260414 from './lecture-2026-04-14';
+import lecture20260415 from './lecture-2026-04-15';
+import lecture20260417 from './lecture-2026-04-17';
 
 // Export all events as an array
 const allEvents: Event[] = [
+  lecture20260417,
+  lecture20260415,
   lecture20260414,
   lecture20251209,
   lecture20251008,
