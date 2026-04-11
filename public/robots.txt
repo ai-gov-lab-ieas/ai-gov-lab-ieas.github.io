@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-gov-lab-ieas.github.io/sitemap.xml
