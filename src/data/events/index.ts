@@ -13,6 +13,8 @@
 import { Event } from './types';
 
 // Import all events
+import lecture2026 from './lecture-2026-04-14';
+import lecture20260414 from './lecture-2026-04-14';
 import lecture20251209 from './lecture-2025-12-09';
 import lecture20251008 from './lecture-2025-10-08';
 import conf20250703 from './conf-2025-07-03';
@@ -25,7 +27,6 @@ import lecture20240502 from './lecture-2024-05-02';
 import lecture20240415 from './lecture-2024-04-15';
 import lecture20240327 from './lecture-2024-03-27';
 import lecture20240320 from './lecture-2024-03-20';
-import lecture20260414 from './lecture-2026-04-14';
 
 // Export all events as an array
 const allEvents: Event[] = [
