@@ -9,6 +9,7 @@ dist/
 dist-ssr/
 build/
 *.local
+.astro/
 
 # Environment variables
 .env
