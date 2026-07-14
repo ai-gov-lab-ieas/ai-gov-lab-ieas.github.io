@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Users, X, ExternalLink } from 'lucide-react';
-import { Lang, CONTENT, MEMBERS, COLLABORATORS } from '../data/content';
+import { Lang, CONTENT, COLLABORATORS } from '../data/content';
+import { MEMBERS } from '../data/members';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
@@ -20,7 +21,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {MEMBERS.map((member, idx) => (
               <a
-                key={member.id}
+                key={member.slug}
                 href={member.url}
                 target="_blank"
                 rel="noopener noreferrer"
