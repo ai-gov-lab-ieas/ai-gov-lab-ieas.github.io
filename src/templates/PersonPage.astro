@@ -1,0 +1,113 @@
+---
+import { ArrowLeft, Calendar, ExternalLink } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MEMBERS, type Member } from '../data/members';
+import { eventsBySpeaker } from '../data/events/loader';
+import { localePath, absoluteUrl } from '../lib/i18n';
+import { personLd, breadcrumbLd, metaDescription } from '../lib/seo';
+import { formatDate } from '../utils/dateFormat';
+import type { Locale } from '../config';
+
+interface Props { locale: Locale; member: Member }
+const { locale, member } = Astro.props;
+const zh = locale === 'zh';
+
+const name = zh ? member.name_zh : member.name_en;
+const role = zh ? member.role_zh : member.role_en;
+const bio = zh ? member.bio_zh : member.bio_en;
+const events = eventsBySpeaker(member.slug);
+
+const title = `${name} - ${zh ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'}`;
+const description = metaDescription(bio);
+const jsonLd = [
+  personLd(member, locale),
+  breadcrumbLd([
+    { name: zh ? '首頁' : 'Home', url: absoluteUrl(locale, '/') },
+    { name: zh ? '參與成員' : 'Team', url: absoluteUrl(locale, '/people/') },
+    { name, url: absoluteUrl(locale, `/people/${member.slug}/`) },
+  ]),
+];
+---
+<BaseLayout
+  locale={locale}
+  path={`/people/${member.slug}/`}
+  title={title}
+  description={description}
+  ogImage={member.image}
+  jsonLd={jsonLd}
+>
+  <div class="min-h-screen bg-[#FAFAFA] pt-24">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 py-12">
+      <a
+        href={localePath(locale, '/people/')}
+        class="inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors mb-8"
+      >
+        <ArrowLeft size={20} />
+        <span class="text-sm font-medium">{zh ? '返回成員列表' : 'Back to Team'}</span>
+      </a>
+
+      <div class="bg-white rounded-3xl overflow-hidden shadow-lg mb-8">
+        <div class="p-8 md:p-12 flex flex-col sm:flex-row gap-8">
+          <div class="w-40 sm:w-48 flex-shrink-0">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden relative bg-slate-100">
+              <img src={member.image} alt="" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110" />
+              <img src={member.image} alt={name} class="relative z-10 w-full h-full object-contain" />
+            </div>
+          </div>
+          <div class="flex-1">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-1">{name}</h1>
+            <p class="text-slate-400 text-lg mb-2">{zh ? member.name_en : member.name_zh}</p>
+            <p class="text-blue-600 font-medium mb-6">{role}</p>
+            <p class="text-slate-700 leading-relaxed mb-6">{bio}</p>
+            <a
+              href={member.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              <ExternalLink size={16} />
+              {zh ? '官方個人頁面' : 'Official profile'}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {events.length > 0 && (
+        <div class="mt-16">
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">
+            {zh ? '相關活動' : 'Events'}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {events.map((post) => (
+              <a
+                href={localePath(locale, `/event/${post.id}/`)}
+                class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100"
+              >
+                <div class="aspect-[16/10] overflow-hidden bg-slate-100">
+                  <img
+                    src={post.image}
+                    alt={zh ? post.title_zh : post.title_en}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div class="p-4">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold">{post.type}</span>
+                    <span class="flex items-center gap-1 text-slate-500 text-xs">
+                      <Calendar size={12} />
+                      {formatDate(post.date)}
+                    </span>
+                  </div>
+                  <h3 class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    {zh ? post.title_zh : post.title_en}
+                  </h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>
