@@ -197,6 +197,3 @@ export const COLLABORATORS = [
   }
 ];
 
-// Import events from individual event files
-// To add a new event: Create a new .ts file in src/data/events/ using _template.ts
-export { POSTS } from './events';

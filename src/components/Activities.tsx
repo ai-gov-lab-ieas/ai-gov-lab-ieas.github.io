@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, ChevronRight } from 'lucide-react';
-import { Lang, CONTENT, POSTS } from '../data/content';
+import { Lang, CONTENT } from '../data/content';
 import { formatDate } from '../utils/dateFormat';
 
 export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
   const t = CONTENT[lang].activities;
 
   // Show only the latest 3 events
-  const latestPosts = POSTS.slice(0, 3);
+  const latestPosts: never[] = [];
 
   return (
     <section id="events" className="py-24 bg-white relative">
