@@ -38,6 +38,12 @@ Keywords: Artificial Intelligence (AI), Artificial Moral Agents (AMAs), responsi
 Date & Time: Monday, March 31, 2025, 2:30 PM
 
 Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "陳禹仲", name_en: "Alvin Chen", affiliation_zh: "中央研究院人文社會科學研究中心", affiliation_en: "Research Center for Humanities and Social Sciences, Academia Sinica" },
+    { member: "chih-hsing-ho" },
+    { member: "hung-ju-chen" },
+  ],
 };
 
 export default event;

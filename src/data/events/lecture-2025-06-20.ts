@@ -30,6 +30,11 @@ Abstract: Fake news is not just a technological problem—it’s a cognitive cha
 Date & Time: Friday, June 20, 2025, 10:30 AM
 
 Venue: 1st Floor Conference Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "古倫維", name_en: "Lun-wei Ku", affiliation_zh: "中央研究院資訊科學研究所", affiliation_en: "Institute of Information Science, Academia Sinica" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

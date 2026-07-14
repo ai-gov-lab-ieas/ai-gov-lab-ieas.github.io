@@ -30,6 +30,12 @@ Discussant: Dr. Chih-hsing Ho / Associate Research Fellow, Institute of European
 Date & Time: Wednesday, March 27, 2024, 10:00 AM
 
 Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "李怡俐", name_en: "Yi-Li Lee", affiliation_zh: "國立清華大學科技法律研究所", affiliation_en: "Institute of Technology Law, National Tsing Hua University" },
+    { member: "hung-ju-chen" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

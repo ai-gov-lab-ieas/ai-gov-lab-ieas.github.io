@@ -32,6 +32,11 @@ Moving into the approval stage, the discussion explores how AI systems can be ef
 Date & Time: Thursday, September 26, 2024, 3:00 PM
 
 Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "Barry Solaiman", name_en: "Barry Solaiman", affiliation_zh: "卡達哈馬德賓哈里發大學法學院", affiliation_en: "College of Law, Hamad Bin Khalifa University, Qatar" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

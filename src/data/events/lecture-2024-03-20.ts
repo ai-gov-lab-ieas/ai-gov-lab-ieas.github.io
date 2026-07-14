@@ -26,6 +26,11 @@ Moderator: Dr. Hung-Ju Chen, Assistant Research Fellow, Institute of European an
 Date & Time: Wednesday, March 20, 2024, 10:00 AM
 
 Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "張智皓", name_en: "Jhih-Hao Jhang", affiliation_zh: "國立屏東科技大學通識教育中心", affiliation_en: "Center for General Education, National Pingtung University of Science and Technology" },
+    { member: "hung-ju-chen" },
+  ],
 };
 
 export default event;

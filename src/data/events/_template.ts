@@ -43,6 +43,21 @@ export const event: Event = {
   // REQUIRED: English description
   // Match Chinese content but adapt for English readers
   content_en: "Event description...",
+
+  // OPTIONAL: Speakers. Lab members by slug (see src/data/members.ts),
+  // external speakers by name. A wrong slug fails the build on purpose.
+  // speakers: [
+  //   { member: "tzu-wei-hung" },
+  //   { name_zh: "王小明", name_en: "Xiao-Ming Wang", affiliation_en: "NTU" },
+  // ],
+
+  // OPTIONAL: Venue (defaults to IEAS, Academia Sinica in structured data)
+  // location_zh: "中央研究院歐美研究所",
+  // location_en: "IEAS, Academia Sinica",
+
+  // OPTIONAL: Talk abstract, shown on the event page under the description
+  // abstract_zh: "...",
+  // abstract_en: "...",
 };
 
 export default event;
