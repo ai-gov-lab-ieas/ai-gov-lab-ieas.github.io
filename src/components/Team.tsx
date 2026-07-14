@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Plus, Users, X, ExternalLink } from 'lucide-react';
-import { Lang, CONTENT, COLLABORATORS } from '../data/content';
+import { CONTENT, COLLABORATORS } from '../data/content';
 import { MEMBERS } from '../data/members';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { localePath } from '../lib/i18n';
+import type { Locale } from '../config';
 
-export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
+export const Team: React.FC<{ lang: Locale }> = ({ lang }) => {
   const t = CONTENT[lang].team;
   const ref = useIntersectionObserver();
   const [showModal, setShowModal] = useState(false);
@@ -22,9 +24,7 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
             {MEMBERS.map((member, idx) => (
               <a
                 key={member.slug}
-                href={member.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={localePath(lang, `/people/${member.slug}/`)}
                 // @ts-ignore
                 ref={ref}
                 style={{ transitionDelay: `${idx * 50}ms` }}
@@ -53,7 +53,6 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <div className="flex items-center gap-1 mb-1">
                       <h3 className="text-white font-bold text-xs leading-tight">{member.name}</h3>
-                      <ExternalLink size={12} className="text-white/80 flex-shrink-0" />
                     </div>
                     <p className="text-blue-300 text-[10px] font-medium mb-2">{lang === 'zh' ? member.role_zh : member.role_en}</p>
                     <div className="flex flex-wrap gap-1">
@@ -94,6 +93,15 @@ export const Team: React.FC<{ lang: Lang }> = ({ lang }) => {
                <h3 className="font-bold text-slate-900 text-xs mb-1">{t.join_title}</h3>
                <p className="text-[10px] text-slate-500">{t.join_desc}</p>
             </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href={localePath(lang, '/people/')}
+              className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+            >
+              {lang === 'zh' ? '查看所有成員 →' : 'View all members →'}
+            </a>
           </div>
         </div>
       </section>

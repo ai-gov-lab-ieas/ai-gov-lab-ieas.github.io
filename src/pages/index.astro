@@ -1,8 +1,4 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { CONTENT } from '../data/content';
-const t = CONTENT.zh;
+import HomePage from '../templates/HomePage.astro';
 ---
-<BaseLayout locale="zh" path="/" title={t.site.title} description={t.hero.desc}>
-  <main class="pt-32 px-8"><h1 class="text-4xl font-bold">Migration in progress</h1></main>
-</BaseLayout>
+<HomePage locale="zh" />

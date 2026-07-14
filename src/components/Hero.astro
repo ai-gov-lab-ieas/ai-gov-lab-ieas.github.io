@@ -1,0 +1,56 @@
+---
+import { ChevronDown } from 'lucide-react';
+import { CONTENT } from '../data/content';
+import type { Locale } from '../config';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = CONTENT[locale].hero;
+---
+<header class="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 px-4 overflow-hidden bg-[#FAFAFA]">
+  <div class="hero-blob absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-blue-400/10 rounded-full blur-[120px]" />
+
+  <div class="relative z-10 max-w-5xl text-center">
+    <div class="hero-fade hero-delay-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-slate-600 text-sm font-medium mb-8">
+      <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+      {t.label}
+    </div>
+
+    <h1 class="hero-fade hero-delay-2 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-900 mb-8">
+      {t.title_line1} <br class="hidden md:block" />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 px-2">
+        {t.title_highlight}
+      </span>
+      {t.title_line2}
+    </h1>
+
+    <p class="hero-fade hero-delay-3 text-lg md:text-2xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+      {t.desc}
+    </p>
+  </div>
+
+  <div class="hero-fade hero-delay-4 absolute bottom-10 flex flex-col items-center gap-2 animate-bounce">
+    <span class="text-xs uppercase tracking-widest text-slate-400">{t.scroll}</span>
+    <ChevronDown className="text-slate-400" />
+  </div>
+</header>
+
+<style>
+  .hero-blob { animation: blob-in 2s ease-out forwards; }
+  @keyframes blob-in {
+    from { scale: 0.5; opacity: 0; }
+    to { scale: 1; opacity: 1; }
+  }
+  .hero-fade {
+    opacity: 0;
+    translate: 0 1rem;
+    animation: hero-in 0.7s ease-out forwards;
+  }
+  .hero-delay-1 { animation-delay: 100ms; }
+  .hero-delay-2 { animation-delay: 200ms; }
+  .hero-delay-3 { animation-delay: 300ms; }
+  .hero-delay-4 { animation-delay: 1000ms; }
+  @keyframes hero-in {
+    to { opacity: 1; translate: 0 0; }
+  }
+</style>
