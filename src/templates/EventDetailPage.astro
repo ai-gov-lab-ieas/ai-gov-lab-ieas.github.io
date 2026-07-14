@@ -1,0 +1,161 @@
+---
+import { ArrowLeft, Calendar, MapPin, User } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { POSTS } from '../data/events/loader';
+import { MEMBERS } from '../data/members';
+import { localePath, absoluteUrl } from '../lib/i18n';
+import { eventLd, breadcrumbLd, metaDescription } from '../lib/seo';
+import { formatDate } from '../utils/dateFormat';
+import type { Locale } from '../config';
+import type { Event } from '../data/events/types';
+
+interface Props { locale: Locale; post: Event }
+const { locale, post } = Astro.props;
+const zh = locale === 'zh';
+
+const title = `${zh ? post.title_zh : post.title_en} - ${zh ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'}`;
+const description = metaDescription(zh ? post.content_zh : post.content_en);
+const relatedPosts = POSTS.filter((p) => p.year === post.year && p.id !== post.id).slice(0, 3);
+
+const speakers = (post.speakers ?? []).map((s) => {
+  if (s.member) {
+    const m = MEMBERS.find((mm) => mm.slug === s.member)!;
+    return { name: zh ? m.name_zh : m.name_en, href: localePath(locale, `/people/${m.slug}/`), affiliation: undefined as string | undefined };
+  }
+  return {
+    name: (zh ? s.name_zh : s.name_en) ?? s.name_en ?? s.name_zh ?? '',
+    href: undefined as string | undefined,
+    affiliation: zh ? (s.affiliation_zh ?? s.affiliation_en) : (s.affiliation_en ?? s.affiliation_zh),
+  };
+});
+const location = zh ? post.location_zh : post.location_en;
+const abstract = zh ? post.abstract_zh : post.abstract_en;
+
+const jsonLd = [
+  eventLd(post, locale),
+  breadcrumbLd([
+    { name: zh ? '首頁' : 'Home', url: absoluteUrl(locale, '/') },
+    { name: zh ? '學術活動' : 'Events', url: absoluteUrl(locale, '/event/') },
+    { name: zh ? post.title_zh : post.title_en, url: absoluteUrl(locale, `/event/${post.id}/`) },
+  ]),
+];
+---
+<BaseLayout
+  locale={locale}
+  path={`/event/${post.id}/`}
+  title={title}
+  description={description}
+  ogImage={post.image}
+  jsonLd={jsonLd}
+>
+  <div class="min-h-screen bg-[#FAFAFA] pt-24">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 py-12">
+      <a
+        href={localePath(locale, '/event/')}
+        class="inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors mb-8"
+      >
+        <ArrowLeft size={20} />
+        <span class="text-sm font-medium">{zh ? '返回活動列表' : 'Back to Events'}</span>
+      </a>
+
+      <div class="bg-white rounded-3xl overflow-hidden shadow-lg mb-8">
+        <div class="aspect-[21/9] overflow-hidden bg-slate-100 relative">
+          <img
+            src={post.image}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
+            aria-hidden="true"
+          />
+          <img
+            src={post.image}
+            alt={zh ? post.title_zh : post.title_en}
+            class="relative w-full h-full object-contain"
+          />
+        </div>
+
+        <div class="p-8 md:p-12">
+          <div class="flex flex-wrap items-center gap-4 mb-6">
+            <span class="px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold">
+              {post.type}
+            </span>
+            <div class="flex items-center gap-2 text-slate-500 text-sm">
+              <Calendar size={16} />
+              <span>{formatDate(post.date)}</span>
+            </div>
+            {location && (
+              <div class="flex items-center gap-2 text-slate-500 text-sm">
+                <MapPin size={16} />
+                <span>{location}</span>
+              </div>
+            )}
+          </div>
+
+          <h1 class="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
+            {zh ? post.title_zh : post.title_en}
+          </h1>
+
+          {speakers.length > 0 && (
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 text-sm text-slate-600">
+              <User size={16} className="text-slate-400" />
+              {speakers.map((s) => (
+                s.href
+                  ? <a href={s.href} class="font-semibold text-blue-600 hover:text-blue-700 transition-colors">{s.name}</a>
+                  : <span class="font-semibold">{s.name}{s.affiliation ? `（${s.affiliation}）` : ''}</span>
+              ))}
+            </div>
+          )}
+
+          <div class="prose prose-slate max-w-none">
+            <p
+              class="text-lg text-slate-700 leading-relaxed"
+              set:html={(zh ? post.content_zh : post.content_en).replace(/\n/g, '<br />')}
+            />
+          </div>
+
+          {abstract && (
+            <div class="mt-8 pt-8 border-t border-slate-100">
+              <h2 class="text-xl font-bold text-slate-900 mb-4">{zh ? '摘要' : 'Abstract'}</h2>
+              <p
+                class="text-slate-700 leading-relaxed"
+                set:html={abstract.replace(/\n/g, '<br />')}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {relatedPosts.length > 0 && (
+        <div class="mt-16">
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">
+            {zh ? '其他活動' : 'Other Events'}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.map((relatedPost) => (
+              <a
+                href={localePath(locale, `/event/${relatedPost.id}/`)}
+                class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100"
+              >
+                <div class="aspect-[16/10] overflow-hidden bg-slate-100">
+                  <img
+                    src={relatedPost.image}
+                    alt={zh ? relatedPost.title_zh : relatedPost.title_en}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div class="p-4">
+                  <span class="px-2 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold">
+                    {relatedPost.type}
+                  </span>
+                  <h3 class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors mt-2 line-clamp-2">
+                    {zh ? relatedPost.title_zh : relatedPost.title_en}
+                  </h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>
