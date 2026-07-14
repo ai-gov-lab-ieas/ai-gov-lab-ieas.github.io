@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  locale="zh"
+  path="/404/"
+  title="404 - AI 治理觀念實驗室"
+  description="Page not found"
+>
+  <meta slot="head" name="robots" content="noindex" />
+  <main class="min-h-screen bg-[#FAFAFA] pt-24 flex items-center justify-center px-4">
+    <div class="text-center">
+      <h1 class="text-7xl font-bold text-slate-900 tracking-tight mb-4">404</h1>
+      <p class="text-slate-500 mb-2">找不到這個頁面。</p>
+      <p class="text-slate-500 mb-8">This page could not be found.</p>
+      <div class="flex items-center justify-center gap-4">
+        <a href="/" class="px-6 py-3 bg-slate-900 text-white rounded-full hover:bg-blue-600 transition-colors font-bold text-sm">回首頁 / Home</a>
+        <a href="/event/" class="px-6 py-3 border border-slate-300 text-slate-700 rounded-full hover:border-blue-600 hover:text-blue-600 transition-colors font-bold text-sm">學術活動 / Events</a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

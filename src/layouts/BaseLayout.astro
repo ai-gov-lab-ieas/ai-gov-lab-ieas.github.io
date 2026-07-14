@@ -45,6 +45,7 @@ const ogImageUrl = ogImage ? (ogImage.startsWith('http') ? ogImage : SITE_URL + 
       <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     ))}
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body class="bg-[#FAFAFA] min-h-screen selection:bg-blue-500 selection:text-white font-sans antialiased">
     <Navigation client:load locale={locale} path={path} />
