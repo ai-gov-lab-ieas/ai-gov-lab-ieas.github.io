@@ -29,10 +29,11 @@ ai-gov-lab-ieas.github.io/
 │   │   ├── ui/
 │   │   │   └── BentoBox.tsx       # Reusable Bento card component
 │   │   ├── Navigation.tsx         # Header with language switcher
-│   │   ├── Hero.tsx               # Landing section
+│   │   ├── Hero.astro             # Landing section
 │   │   ├── Mission.tsx            # Mission statement with Bento grid
 │   │   ├── Team.tsx               # Team members section
-│   │   └── Activities.tsx         # Events and news section (latest 3)
+│   │   ├── Activities.tsx         # Events and news section (latest 3)
+│   │   └── Footer.astro           # Footer with links
 │   ├── pages/                     # Astro file-based routes (zh at /, en at /en/)
 │   │   ├── index.astro            # Homepage (zh)
 │   │   ├── en/index.astro         # Homepage (en)
