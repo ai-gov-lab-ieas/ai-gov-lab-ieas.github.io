@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import { SITE_URL, type Locale } from '../config';
+import { localePath } from '../lib/i18n';
+import { organizationLd } from '../lib/seo';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  locale: Locale;
+  path: string;          // locale-neutral, leading + trailing slash
+  title: string;
+  description: string;
+  ogImage?: string;      // absolute URL or site-relative path
+  jsonLd?: object[];
+}
+
+const { locale, path, title, description, ogImage, jsonLd = [] } = Astro.props;
+const canonical = SITE_URL + localePath(locale, path);
+const allJsonLd = [organizationLd(locale), ...jsonLd];
+const ogImageUrl = ogImage ? (ogImage.startsWith('http') ? ogImage : SITE_URL + ogImage) : undefined;
+---
+<!doctype html>
+<html lang={locale === 'zh' ? 'zh-Hant' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="zh-Hant" href={SITE_URL + localePath('zh', path)} />
+    <link rel="alternate" hreflang="en" href={SITE_URL + localePath('en', path)} />
+    <link rel="alternate" hreflang="x-default" href={SITE_URL + localePath('zh', path)} />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={locale === 'zh' ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === 'zh' ? 'zh_TW' : 'en_US'} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    {allJsonLd.map((ld) => (
+      <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    ))}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="bg-[#FAFAFA] min-h-screen selection:bg-blue-500 selection:text-white font-sans antialiased">
+    <Navigation client:load locale={locale} path={path} />
+    <slot />
+    <Footer locale={locale} />
+  </body>
+</html>
