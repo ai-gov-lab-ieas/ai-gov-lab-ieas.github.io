@@ -43,6 +43,54 @@ const MEMBER_LABELS = {
   en: { bio: 'Bio', altLocale: 'ZH' },
 } as const;
 
+// Bio strings follow a light convention:
+//   `## Heading`  -> section heading
+//   `- item`      -> list item (consecutive lines form one <ul>)
+//   blank line    -> paragraph break
+//   anything else -> prose (consecutive non-blank lines join with a space)
+export function renderBioHtml(bio: string): string {
+  const escape = (s: string): string =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const lines = bio.split('\n').map((l) => l.trimEnd());
+  const out: string[] = [];
+  let paragraph: string[] = [];
+  let listItems: string[] = [];
+
+  const flushParagraph = (): void => {
+    if (paragraph.length) {
+      out.push(`<p>${escape(paragraph.join(' '))}</p>`);
+      paragraph = [];
+    }
+  };
+  const flushList = (): void => {
+    if (listItems.length) {
+      out.push(`<ul>${listItems.map((i) => `<li>${escape(i)}</li>`).join('')}</ul>`);
+      listItems = [];
+    }
+  };
+
+  for (const line of lines) {
+    if (line === '') {
+      flushParagraph();
+      flushList();
+    } else if (line.startsWith('## ')) {
+      flushParagraph();
+      flushList();
+      out.push(`<h2>${escape(line.slice(3).trim())}</h2>`);
+    } else if (line.startsWith('- ')) {
+      flushParagraph();
+      listItems.push(line.slice(2).trim());
+    } else {
+      flushList();
+      paragraph.push(line);
+    }
+  }
+  flushParagraph();
+  flushList();
+  return out.join('');
+}
+
 export function renderEventMarkdown(event: Event, locale: Locale): string {
   const zh = locale === 'zh';
   const labels = EVENT_LABELS[locale];
@@ -102,5 +150,14 @@ export function renderMemberMarkdown(member: Member, locale: Locale): string {
     `- **Image:** ${SITE_URL}${member.image}`,
   ];
 
-  return `# ${name}\n\n${header.join('\n')}\n\n## ${labels.bio}\n\n${bio.trim()}\n`;
+  const attribution = zh
+    ? `> 以上內容摘錄自中央研究院官方頁面，最新資訊請參見[官方個人頁面](${member.url})。`
+    : `> Excerpted from Academia Sinica's official website. For the latest information, refer to the [institutional profile](${member.url}).`;
+
+  // Bio strings use `## ` for their own section headings. Nested under the
+  // outer `## Bio` heading in the markdown mirror, bump them one level deeper
+  // so the document outline reads H1 → H2 (Bio) → H3 (bio subsections).
+  const bioBody = bio.trim().replace(/^## /gm, '### ');
+
+  return `# ${name}\n\n${header.join('\n')}\n\n## ${labels.bio}\n\n${bioBody}\n\n${attribution}\n`;
 }

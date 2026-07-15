@@ -5,6 +5,7 @@ import type { Member } from '../data/members';
 import { eventsBySpeaker } from '../data/events/loader';
 import { localePath, absoluteUrl } from '../lib/i18n';
 import { personLd, breadcrumbLd, metaDescription, SITE_SUFFIX_EN } from '../lib/seo';
+import { renderBioHtml } from '../lib/render';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
 
@@ -58,7 +59,19 @@ const jsonLd = [
             <h1 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-1">{name}</h1>
             <p class="text-slate-400 text-lg mb-2">{zh ? member.name_en : member.name_zh}</p>
             <p class="text-blue-600 font-medium mb-6">{role}</p>
-            <p class="text-slate-700 leading-relaxed mb-6">{bio}</p>
+            <div
+              class="member-bio text-slate-700 leading-relaxed mb-6"
+              set:html={renderBioHtml(bio)}
+            />
+            <p class="text-xs text-slate-500 italic mb-4">
+              {zh ? '以上內容摘錄自中央研究院官方頁面，最新資訊請參見' : "Excerpted from Academia Sinica's official website. For the latest information, refer to the "}
+              <a
+                href={member.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline hover:text-blue-600 transition-colors"
+              >{zh ? '官方個人頁面' : 'institutional profile'}</a>{zh ? '。' : '.'}
+            </p>
             <a
               href={member.url}
               target="_blank"
@@ -111,3 +124,30 @@ const jsonLd = [
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .member-bio :global(h2) {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgb(15 23 42);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .member-bio :global(h2):first-child {
+    margin-top: 0;
+  }
+  .member-bio :global(p) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .member-bio :global(ul) {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+  .member-bio :global(li) {
+    margin-top: 0.125rem;
+    margin-bottom: 0.125rem;
+  }
+</style>

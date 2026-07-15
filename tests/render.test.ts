@@ -132,13 +132,52 @@ describe('renderMemberMarkdown', () => {
     expect(md).toContain(`**Institutional page:** ${sampleMember.url}`);
     expect(md).toContain(`**Image:** ${SITE_URL}${sampleMember.image}`);
     expect(md).toContain('## Bio');
-    expect(md).toContain(sampleMember.bio_zh);
+    // bio's own `## Heading` sections are bumped to `### ` when nested under `## Bio`
+    expect(md).toContain(sampleMember.bio_zh.replace(/^## /gm, '### '));
   });
 
   it('emits EN mirror with EN bio', () => {
     const md = renderMemberMarkdown(sampleMember, 'en');
     expect(md).toMatch(new RegExp(`^# ${sampleMember.name_en}\\n`));
     expect(md).toContain(`**Role:** ${sampleMember.role_en}`);
-    expect(md).toContain(sampleMember.bio_en);
+    expect(md).toContain(sampleMember.bio_en.replace(/^## /gm, '### '));
+  });
+
+  it('appends an Academia Sinica attribution blockquote with the institutional link', () => {
+    const zhMd = renderMemberMarkdown(sampleMember, 'zh');
+    expect(zhMd).toContain(`> 以上內容摘錄自中央研究院官方頁面`);
+    expect(zhMd).toContain(`[官方個人頁面](${sampleMember.url})`);
+
+    const enMd = renderMemberMarkdown(sampleMember, 'en');
+    expect(enMd).toContain(`> Excerpted from Academia Sinica's official website.`);
+    expect(enMd).toContain(`[institutional profile](${sampleMember.url})`);
+  });
+});
+
+import { renderBioHtml } from '../src/lib/render';
+
+describe('renderBioHtml', () => {
+  it('renders `## Heading` as <h2>', () => {
+    expect(renderBioHtml('## Professional Experience')).toBe('<h2>Professional Experience</h2>');
+  });
+
+  it('groups consecutive `- item` lines into a single <ul>', () => {
+    const html = renderBioHtml('- one\n- two\n- three');
+    expect(html).toBe('<ul><li>one</li><li>two</li><li>three</li></ul>');
+  });
+
+  it('separates paragraphs on blank lines and joins soft-wrapped lines with a space', () => {
+    const html = renderBioHtml('First paragraph line one.\nStill first paragraph.\n\nSecond paragraph.');
+    expect(html).toBe('<p>First paragraph line one. Still first paragraph.</p><p>Second paragraph.</p>');
+  });
+
+  it('escapes HTML in bio content', () => {
+    const html = renderBioHtml('- <script>alert(1)</script>');
+    expect(html).toBe('<ul><li>&lt;script&gt;alert(1)&lt;/script&gt;</li></ul>');
+  });
+
+  it('combines headings, lists, and paragraphs in order', () => {
+    const html = renderBioHtml('## A\n\n- x\n- y\n\nintro prose.\n\n## B\n\n- z');
+    expect(html).toBe('<h2>A</h2><ul><li>x</li><li>y</li></ul><p>intro prose.</p><h2>B</h2><ul><li>z</li></ul>');
   });
 });

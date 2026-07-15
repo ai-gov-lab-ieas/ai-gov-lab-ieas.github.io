@@ -26,7 +26,12 @@ function toAbsolute(url: string): string {
 }
 
 export function metaDescription(text: string, max = 155): string {
-  const clean = text.replace(/<br\s*\/?>/g, ' ').replace(/\s+/g, ' ').trim();
+  const clean = text
+    .replace(/<br\s*\/?>/g, ' ')
+    .replace(/^##+\s+/gm, '')
+    .replace(/^-\s+/gm, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   if (clean.length <= max) return clean;
   const cut = clean.slice(0, max - 1);
   return cut.slice(0, cut.lastIndexOf(' ') > 60 ? cut.lastIndexOf(' ') : max - 1) + '…';
