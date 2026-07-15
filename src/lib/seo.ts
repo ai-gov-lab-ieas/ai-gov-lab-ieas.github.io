@@ -1,7 +1,8 @@
 import { SITE_URL, type Locale } from '../config';
 import { absoluteUrl } from './i18n';
 import type { Event } from '../data/events/types';
-import { MEMBERS, type Member } from '../data/members';
+import type { Member } from '../data/members';
+import { resolveSpeaker } from './render';
 
 const ORG_NAME = { zh: 'AI 治理觀念實驗室', en: 'AI Governance Laboratory' } as const;
 const IEAS_NAME = {
@@ -64,20 +65,14 @@ export function personLd(member: Member, locale: Locale) {
 
 export function eventLd(event: Event, locale: Locale) {
   const performer = (event.speakers ?? []).map((s) => {
-    if (s.member) {
-      const m = MEMBERS.find((mm) => mm.slug === s.member);
-      if (!m) throw new Error(`eventLd: unknown member slug ${s.member}`);
-      return {
-        '@type': 'Person',
-        name: locale === 'zh' ? m.name_zh : m.name_en,
-        url: absoluteUrl(locale, `/people/${m.slug}/`),
-      };
+    const r = resolveSpeaker(s, locale);
+    if (r.kind === 'member') {
+      return { '@type': 'Person', name: r.name, url: r.url };
     }
-    const affiliation = locale === 'zh' ? (s.affiliation_zh ?? s.affiliation_en) : (s.affiliation_en ?? s.affiliation_zh);
     return {
       '@type': 'Person',
-      name: (locale === 'zh' ? s.name_zh : s.name_en) ?? s.name_en ?? s.name_zh,
-      ...(affiliation ? { affiliation: { '@type': 'Organization', name: affiliation } } : {}),
+      name: r.name,
+      ...(r.affiliation ? { affiliation: { '@type': 'Organization', name: r.affiliation } } : {}),
     };
   });
 

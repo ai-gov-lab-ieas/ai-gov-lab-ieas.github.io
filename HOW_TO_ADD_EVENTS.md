@@ -13,6 +13,15 @@ To add a new event:
 3. Fill in your event details
 4. Done! The event will automatically appear on the website
 
+Adding a new event automatically produces, in addition to the HTML pages:
+- an entry in `/event/feed.xml` and `/en/event/feed.xml` (Atom feed, newest first)
+- markdown mirrors at `/event/<id>.md` and `/en/event/<id>.md`
+- a bullet in `/llms.txt`, `/en/llms.txt`, and the full dumps `/llms-full.txt` /
+  `/en/llms-full.txt`
+
+No manual update to any index file is needed. See `docs/SEO.md` for the full list
+of machine-readable surfaces.
+
 ## Step-by-Step Instructions
 
 ### Step 1: Copy the Template
