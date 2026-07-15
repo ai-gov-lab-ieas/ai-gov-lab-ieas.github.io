@@ -89,9 +89,11 @@ describe('buildLlmsFull', () => {
 
   it('emits events in POSTS order (newest first)', () => {
     const s = buildLlmsFull('zh');
-    const idxFirst = s.indexOf(POSTS[0].id);
-    const idxLast = s.indexOf(POSTS[POSTS.length - 1].id);
-    expect(idxFirst).toBeGreaterThan(0);
-    expect(idxFirst).toBeLessThan(idxLast);
+    let last = -1;
+    for (const p of POSTS) {
+      const idx = s.indexOf(p.id);
+      expect(idx).toBeGreaterThan(last);
+      last = idx;
+    }
   });
 });
