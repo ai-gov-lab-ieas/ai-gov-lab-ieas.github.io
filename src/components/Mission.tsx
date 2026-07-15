@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Shield, ChevronRight } from 'lucide-react';
 import { BentoBox } from './ui/BentoBox';
 import { MissionModal } from './ui/MissionModal';
-import { Lang, CONTENT } from '../data/content';
+import { CONTENT } from '../data/content';
+import type { Lang } from '../data/content';
 
 export const Mission: React.FC<{ lang: Lang }> = ({ lang }) => {
   const t = CONTENT[lang].mission;
