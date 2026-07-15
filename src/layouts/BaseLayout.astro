@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { SITE_URL, type Locale } from '../config';
 import { localePath } from '../lib/i18n';
-import { organizationLd } from '../lib/seo';
+import { organizationLd, SITE_NAME_BILINGUAL_EN } from '../lib/seo';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer.astro';
 
@@ -34,7 +34,7 @@ const ogImageUrl = ogImage ? (ogImage.startsWith('http') ? ogImage : SITE_URL + 
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={locale === 'zh' ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'} />
+    <meta property="og:site_name" content={locale === 'zh' ? 'AI 治理觀念實驗室' : SITE_NAME_BILINGUAL_EN} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
