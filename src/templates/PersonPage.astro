@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import type { Member } from '../data/members';
 import { eventsBySpeaker } from '../data/events/loader';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { personLd, breadcrumbLd, metaDescription } from '../lib/seo';
+import { personLd, breadcrumbLd, metaDescription, SITE_SUFFIX_EN } from '../lib/seo';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
 
@@ -17,7 +17,7 @@ const role = zh ? member.role_zh : member.role_en;
 const bio = zh ? member.bio_zh : member.bio_en;
 const events = eventsBySpeaker(member.slug);
 
-const title = `${name} - ${zh ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'}`;
+const title = `${name} - ${zh ? 'AI 治理觀念實驗室' : SITE_SUFFIX_EN}`;
 const description = metaDescription(bio);
 const jsonLd = [
   personLd(member, locale),

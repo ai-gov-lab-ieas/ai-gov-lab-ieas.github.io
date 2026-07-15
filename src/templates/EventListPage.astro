@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { CONTENT } from '../data/content';
 import { POSTS } from '../data/events/loader';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { breadcrumbLd } from '../lib/seo';
+import { breadcrumbLd, SITE_SUFFIX_EN } from '../lib/seo';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
 
@@ -21,7 +21,7 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
 const title = zh
   ? `學術活動 - AI 治理觀念實驗室`
-  : `Events - AI Governance Laboratory`;
+  : `Events - ${SITE_SUFFIX_EN}`;
 const description = zh
   ? `AI 治理觀念實驗室的演講、研討會與工作坊，共 ${POSTS.length} 場活動。`
   : `Lectures, conferences, and workshops of the AI Governance Laboratory — ${POSTS.length} events.`;

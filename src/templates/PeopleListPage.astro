@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { CONTENT } from '../data/content';
 import { MEMBERS } from '../data/members';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { breadcrumbLd } from '../lib/seo';
+import { breadcrumbLd, SITE_SUFFIX_EN } from '../lib/seo';
 import type { Locale } from '../config';
 
 interface Props { locale: Locale }
@@ -12,7 +12,7 @@ const { locale } = Astro.props;
 const zh = locale === 'zh';
 const t = CONTENT[locale].team;
 
-const title = zh ? '參與成員 - AI 治理觀念實驗室' : 'Team - AI Governance Laboratory';
+const title = zh ? '參與成員 - AI 治理觀念實驗室' : `Team - ${SITE_SUFFIX_EN}`;
 const description = zh
   ? 'AI 治理觀念實驗室成員：中央研究院跨領域研究人員，涵蓋法律、哲學、倫理學與資訊科學。'
   : 'Members of the AI Governance Laboratory — interdisciplinary researchers at Academia Sinica across law, philosophy, ethics, and computer science.';

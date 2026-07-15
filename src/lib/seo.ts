@@ -9,6 +9,17 @@ const IEAS_NAME = {
   en: 'Institute of European and American Studies, Academia Sinica',
 } as const;
 
+// Institutional suffix used on every EN sub-page <title>.
+// Matches the pre-existing EN homepage title in src/data/content.ts.
+// If either the ORG name, IEAS name, or Academia Sinica affiliation changes,
+// update BOTH this constant AND the literal in content.ts.
+export const SITE_SUFFIX_EN = 'AI Governance Laboratory, IEAS, Academia Sinica';
+
+// Bilingual brand form used only by og:site_name on EN pages
+// and by the 404 page's <title> (404 is one file for all visitors,
+// noindex, so mixing scripts here is safe).
+export const SITE_NAME_BILINGUAL_EN = 'AI Governance Laboratory | AI 治理觀念實驗室';
+
 function toAbsolute(url: string): string {
   return url.startsWith('http') ? url : SITE_URL + url;
 }

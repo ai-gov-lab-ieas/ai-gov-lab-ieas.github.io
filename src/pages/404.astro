@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_NAME_BILINGUAL_EN } from '../lib/seo';
 ---
 <BaseLayout
   locale="zh"
   path="/404/"
-  title="404 - AI 治理觀念實驗室"
-  description="Page not found"
+  title={`404 - ${SITE_NAME_BILINGUAL_EN}`}
+  description="找不到這個頁面 / Page not found"
 >
   <meta slot="head" name="robots" content="noindex" />
   <main class="min-h-screen bg-[#FAFAFA] pt-24 flex items-center justify-center px-4">

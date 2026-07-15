@@ -65,6 +65,8 @@ export const CONTENT = {
   },
   en: {
     site: {
+      // NOTE: This literal must match `${SITE_SUFFIX_EN}` (from src/lib/seo.ts)
+      // preceded by the hyphen separator. Keep the two in sync on rename.
       title: "AI Governance Laboratory - IEAS, Academia Sinica",
       name: "AI Governance Laboratory"
     },
