@@ -77,3 +77,27 @@ speaker's profile, a flagship event), it is worth asking IEAS or Academia Sinica
 **deep links to those specific URLs** — not just to the homepage — from their own pages.
 Search engines weight individual pages more strongly when they are linked to directly
 from an authoritative, already-indexed domain.
+
+## Non-HTML SEO / LLM surfaces
+
+Alongside the HTML pages, the site emits four machine-readable surfaces per locale.
+None of these are indexed in `sitemap-index.xml` (endpoints have `route.type ===
+'endpoint'`, and `@astrojs/sitemap` filters those out automatically):
+
+| Surface | ZH URL | EN URL | Content-Type |
+|---|---|---|---|
+| Atom feed | `/event/feed.xml` | `/en/event/feed.xml` | `application/atom+xml; charset=utf-8` |
+| Event markdown mirror | `/event/<id>.md` | `/en/event/<id>.md` | `text/markdown; charset=utf-8` |
+| Member markdown mirror | `/people/<slug>.md` | `/en/people/<slug>.md` | `text/markdown; charset=utf-8` |
+| llms.txt index | `/llms.txt` | `/en/llms.txt` | `text/plain; charset=utf-8` |
+| llms-full.txt (all content) | `/llms-full.txt` | `/en/llms-full.txt` | `text/plain; charset=utf-8` |
+
+Extension endpoints (`.xml`, `.md`, `.txt`) are always served without a trailing
+slash, regardless of the project's `trailingSlash: 'ignore'` config — internal
+references to these URLs must omit the trailing slash. HTML page URLs keep their
+trailing slash as before.
+
+Feeds are auto-discovered from every page via two `<link rel="alternate"
+type="application/atom+xml">` tags in `BaseLayout.astro`, one per locale, with
+`hreflang` on the non-current locale. `llms.txt` is discovered by convention at
+`/llms.txt` (llmstxt.org spec).

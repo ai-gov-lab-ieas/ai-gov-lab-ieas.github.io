@@ -94,6 +94,14 @@ Traditional Chinese is the default locale at the site root; English lives under 
 - `/people/:slug/` - Individual member detail page (zh)
 - `/en/people/:slug/` - Individual member detail page (en)
 - `/404/` - Not-found page (noindex)
+- `/event/feed.xml` - Atom feed (ZH)
+- `/en/event/feed.xml` - Atom feed (EN)
+- `/event/:id.md` - Event markdown mirror (ZH)
+- `/en/event/:id.md` - Event markdown mirror (EN)
+- `/people/:slug.md` - Member markdown mirror (ZH)
+- `/en/people/:slug.md` - Member markdown mirror (EN)
+- `/llms.txt` and `/en/llms.txt` - llmstxt.org-style content index per locale
+- `/llms-full.txt` and `/en/llms-full.txt` - bulk-content markdown dump per locale
 
 The homepage displays the **latest 3 events** with a "View All Events" button linking to the full archive.
 
