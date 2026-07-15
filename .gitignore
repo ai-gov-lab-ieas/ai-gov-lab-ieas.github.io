@@ -9,6 +9,7 @@ dist/
 dist-ssr/
 build/
 *.local
+.astro/
 
 # Environment variables
 .env
@@ -24,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+docs/superpowers/*
 
 # Editor directories and files
 .vscode/

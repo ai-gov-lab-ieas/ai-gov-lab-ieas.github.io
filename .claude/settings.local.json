@@ -5,9 +5,7 @@
       "Bash(npm install:*)",
       "WebFetch(domain:sites.google.com)",
       "Bash(npm run:*)",
-      "Bash(./node_modules/.bin/tsc --noEmit)",
-      "Bash(./node_modules/.bin/vite build:*)",
-      "Bash(node scripts/generate-sitemap.mjs)"
+      "Bash(./node_modules/.bin/tsc --noEmit)"
     ]
   }
 }

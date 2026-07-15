@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "conf-2025-07-03",
@@ -55,6 +55,12 @@ Title: The Boundaries and Challenges of AI Governance: Reflections from the EU A
 
 Link to agenda: https://drive.google.com/file/d/1E63HdUzMoOra7JL9kGWpXWwbvqKLPzdT/view
   `,
+
+  speakers: [
+    { member: "cheng-hung-tsai" },
+    { member: "hung-ju-chen" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

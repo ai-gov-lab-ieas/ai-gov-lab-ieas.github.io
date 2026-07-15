@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "lecture-2025-12-09",
@@ -26,6 +26,11 @@ Venue: 1st Floor Conference Room, Institute of European and American Studies, Ac
 Abstract: For decades, Taiwan and South Korea have been hailed as success stories of how strengthening the rule of law can help authoritarian regimes transition to democracy. But why has the international community’s annual investment of tens of billions of dollars in legal aid, in an effort to replicate this success story, resulted in democratic backsliding over the past two decades? This lecture revisits the legal development of Taiwan, South Korea, and China from historical archives, challenging existing narratives about rule of law promotion and democracy. The research identifies two paradigms of international rule of law aid: the “state-first” model during the Cold War and the “democracy-first” model after the Cold War. These two models differ in form but are similar in effect: international rule of law aid often strengthens rather than loosens authoritarian rule. The democratization of Taiwan and South Korea is not evidence of modernization theory but an exception. Future rule of law aid must be redesigned or it may continue to be a governance tool that strengthens authoritarian resilience.
 
 `,
+
+  speakers: [
+    { name_zh: "陳維曾", name_en: "Weitseng Chen", affiliation_zh: "新加坡國立大學法學院", affiliation_en: "National University of Singapore School of Law" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

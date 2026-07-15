@@ -35,11 +35,11 @@ jobs:
         run: |
           npm ci
 
+      - name: Test
+        run: npm test
+
       - name: Build
         run: npm run build
-        env:
-          # 使用 repository 名稱作為 base URL
-          NODE_ENV: production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "lecture-2024-04-15",
@@ -30,6 +30,11 @@ Abstract: Over the last two decades, genomic science and technologies have achie
 Date & Time: Monday, April 15, 2024, 10:30 AM
 
 Venue: 1F Auditorium, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "Yann Joly", name_en: "Yann Joly", affiliation_zh: "McGill大學基因組政策中心", affiliation_en: "Centre of Genomics and Policy, McGill University" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

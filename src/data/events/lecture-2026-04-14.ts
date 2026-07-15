@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "lecture-2026-04-14",
@@ -32,6 +32,12 @@ Venue: 1st Floor Conference Room, Institute of European and American Studies, Ac
 Abstract: How has the last decade amplified and challenged the themes of Kennedy’s 2015 book, Globalizing Knowledge? First discussed publicly at Singapore Management University in that year, we can see that concerns over intellectual responsibility and university accountability abide. However, changes in American and global power relations, anticipated by Russia’s invasion of Ukraine but finding new fulfillment in the proliferation of strongmen politics elsewhere, challenge how academic freedom is to be conceived and the politics of diversity and inclusion articulated. Kennedy draws on his own Brown University’s experience to characterize the recent past & anticipate alternative futures.
 
 `,
+
+  speakers: [
+    { name_zh: "Michael Kennedy", name_en: "Michael Kennedy", affiliation_zh: "布朗大學社會學暨國際與公共事務系", affiliation_en: "Sociology and International and Public Affairs Studies, Brown University" },
+    { name_zh: "邵允鍾", name_en: "Yung-Djong Shaw", affiliation_zh: "中央研究院歐美研究所", affiliation_en: "Institute of European and American Studies, Academia Sinica" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

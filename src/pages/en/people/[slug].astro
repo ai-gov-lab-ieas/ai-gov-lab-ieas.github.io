@@ -1,0 +1,10 @@
+---
+import { MEMBERS } from '../../../data/members';
+import PersonPage from '../../../templates/PersonPage.astro';
+
+export function getStaticPaths() {
+  return MEMBERS.map((member) => ({ params: { slug: member.slug }, props: { member } }));
+}
+const { member } = Astro.props;
+---
+<PersonPage locale="en" member={member} />

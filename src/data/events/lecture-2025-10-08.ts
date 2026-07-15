@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "lecture-2025-10-08",
@@ -39,6 +39,11 @@ Marcelo Corrales Compagnucci is Associate Professor and Associate Director at th
 founder of CORCOM IT Law Consulting. He has a Doctor of Laws (LL.D.) degree from Kyushu University in Japan. He also holds a Master of Laws (LL.M.) in international economics and business law from Kyushu University, and an LL.M. in law and information technology and an LL.M. in European intellectual property law, both from the University of Stockholm in Sweden. He has several publications in the field of IT and Bioscience Law.
 
   `,
+
+  speakers: [
+    { name_zh: "Marcelo Corrales Compagnucci", name_en: "Marcelo Corrales Compagnucci", affiliation_zh: "丹麥哥本哈根大學法學院", affiliation_en: "Faculty of Law, University of Copenhagen" },
+    { member: "chih-hsing-ho" },
+  ],
 };
 
 export default event;

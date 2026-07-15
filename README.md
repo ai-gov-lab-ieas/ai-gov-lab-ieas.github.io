@@ -1,14 +1,15 @@
 # AI Governance Laboratory Website
 
-A modern, bilingual website for the AI Governance Laboratoryoratory at Academia Sinica's Institute of European and American Studies.
+A modern, bilingual website for the AI Governance Laboratory at Academia Sinica's Institute of European and American Studies.
 
 ## 📖 Overview
 
-This project features a content-driven architecture with a modern, Apple/Google-inspired design aesthetic. Built with React, TypeScript, and TailwindCSS v4, it emphasizes:
+This project features a content-driven architecture with a modern, Apple/Google-inspired design aesthetic. Built with Astro, React, TypeScript, and TailwindCSS v4, it emphasizes:
 
-- **Bilingual Support**: Seamless EN/ZH-TW language switching
+- **Bilingual Support**: Statically-rendered ZH-TW and EN pages at parallel URLs
+- **SEO-first**: Per-page canonical URLs, hreflang alternates, Open Graph tags, a build-time sitemap, and JSON-LD structured data (see `docs/SEO.md`)
 - **Modern Design**: Bento grid layouts, scroll-driven animations, and dynamic navigation
-- **Content-First Architecture**: All text content centralized in a single data file for easy updates
+- **Content-First Architecture**: Events and member bios centralized in typed data files for easy updates
 - **Responsive**: Optimized for desktop and mobile devices
 
 ## 🎨 Design Features
@@ -28,51 +29,71 @@ ai-gov-lab-ieas.github.io/
 │   │   ├── ui/
 │   │   │   └── BentoBox.tsx       # Reusable Bento card component
 │   │   ├── Navigation.tsx         # Header with language switcher
-│   │   ├── Hero.tsx               # Landing section
+│   │   ├── Hero.astro             # Landing section
 │   │   ├── Mission.tsx            # Mission statement with Bento grid
 │   │   ├── Team.tsx               # Team members section
-│   │   └── Activities.tsx         # Events and news section (latest 3)
-│   ├── pages/
-│   │   ├── HomePage.tsx           # Main homepage layout
-│   │   ├── EventsPage.tsx         # All events archive
-│   │   └── EventDetailPage.tsx    # Single event detail page
+│   │   ├── Activities.tsx         # Events and news section (latest 3)
+│   │   └── Footer.astro           # Footer with links
+│   ├── pages/                     # Astro file-based routes (zh at /, en at /en/)
+│   │   ├── index.astro            # Homepage (zh)
+│   │   ├── en/index.astro         # Homepage (en)
+│   │   ├── event/                 # Event list + [id] detail (zh)
+│   │   ├── en/event/               # Event list + [id] detail (en)
+│   │   ├── people/                 # People list + [slug] detail (zh)
+│   │   ├── en/people/              # People list + [slug] detail (en)
+│   │   └── 404.astro               # Not-found page
+│   ├── layouts/
+│   │   └── BaseLayout.astro       # Shared <head>, nav, footer, SEO tags
+│   ├── lib/
+│   │   ├── i18n.ts                # Locale-aware path helpers
+│   │   └── seo.ts                 # JSON-LD builders, meta description helper
 │   ├── data/
-│   │   ├── events/                # Individual event files
+│   │   ├── events/                # Individual event files, glob-loaded and validated
 │   │   │   ├── _template.ts       # Template for new events
 │   │   │   ├── types.ts           # Event type definition
-│   │   │   ├── index.ts           # Exports all events
+│   │   │   ├── index.ts           # Loads and validates all events
 │   │   │   └── *.ts               # Individual event files
-│   │   └── content.ts             # All bilingual content
+│   │   ├── members.ts             # Bilingual member/team data with slugs
+│   │   └── content.ts             # Remaining bilingual site content
 │   ├── hooks/
 │   │   └── useIntersectionObserver.ts  # Scroll animation hook
-│   ├── App.tsx                    # Main app with routing
-│   ├── main.tsx                   # Application entry point
-│   └── index.css                  # Global styles and Tailwind imports
+│   └── styles/
+│       └── global.css             # Global styles and Tailwind imports
+├── public/
+│   └── robots.txt                 # Crawler policy + sitemap pointer
 ├── HOW_TO_ADD_EVENTS.md           # Guide for adding new events
-├── index.html                     # HTML entry point
-├── vite.config.ts                 # Vite configuration
+├── docs/
+│   └── SEO.md                     # Search Console / Bing setup, SEO metadata reference
+├── astro.config.mjs               # Astro configuration (site URL, integrations)
 ├── tsconfig.json                  # TypeScript configuration
-├── tailwind.config.js             # TailwindCSS configuration
-└── postcss.config.js              # PostCSS configuration
+└── tailwind.config.js             # TailwindCSS configuration
 ```
 
 ## 📦 Tech Stack
 
-- **Framework**: React 18
+- **Framework**: Astro 5 (static output), with React 18 islands for interactive components
 - **Language**: TypeScript 5
-- **Build Tool**: Vite 5
-- **Routing**: React Router DOM 6
-- **Styling**: TailwindCSS v4 with PostCSS
-- **Icons**: Lucide React
-- **Deployment**: GitHub Pages Ready
+- **Styling**: TailwindCSS v4 via `@tailwindcss/vite`
+- **Sitemap**: `@astrojs/sitemap`
+- **Testing**: Vitest
+- **Deployment**: GitHub Pages via GitHub Actions
 
 ## 🗺️ Routing Structure
 
-The website uses React Router for client-side navigation:
+The site is statically rendered by Astro using file-based routing under `src/pages/`.
+Traditional Chinese is the default locale at the site root; English lives under `/en/`:
 
-- `/` - Homepage (Hero, Activities, Mission, Team)
-- `/event` - All events archive page (organized by year)
-- `/event/:eventId` - Individual event detail page
+- `/` - Homepage (zh)
+- `/en/` - Homepage (en)
+- `/event/` - All events archive page (zh)
+- `/en/event/` - All events archive page (en)
+- `/event/:id/` - Individual event detail page (zh)
+- `/en/event/:id/` - Individual event detail page (en)
+- `/people/` - Team/people list page (zh)
+- `/en/people/` - Team/people list page (en)
+- `/people/:slug/` - Individual member detail page (zh)
+- `/en/people/:slug/` - Individual member detail page (en)
+- `/404/` - Not-found page (noindex)
 
 The homepage displays the **latest 3 events** with a "View All Events" button linking to the full archive.
 
@@ -80,7 +101,7 @@ The homepage displays the **latest 3 events** with a "View All Events" button li
 
 ### Prerequisites
 
-- Node.js (v16.0.0 or higher)
+- Node.js (v20.0.0 or higher)
 - npm, yarn, or pnpm
 
 ### Installation
@@ -103,8 +124,17 @@ npm run dev
 
 4. Open your browser and navigate to:
 ```
-http://localhost:5173
+http://localhost:4321
 ```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+Runs the Vitest suite, including event/member data validation. This also runs in CI
+before every build (see `.github/workflows/deploy.yml`).
 
 ### Build for Production
 
@@ -112,7 +142,7 @@ http://localhost:5173
 npm run build
 ```
 
-The production-ready files will be in the `dist/` directory.
+The production-ready static files (including `sitemap-index.xml` and `robots.txt`) will be in the `dist/` directory.
 
 ### Preview Production Build
 
@@ -124,7 +154,7 @@ npm run preview
 
 ### Updating Content
 
-All website content is centralized in `src/data/content.ts`. To update text:
+Most non-event, non-member site content is still centralized in `src/data/content.ts`. To update text:
 
 1. Navigate to `src/data/content.ts`
 2. Locate the content you want to modify
@@ -151,17 +181,21 @@ export const CONTENT = {
 
 ### Adding Team Members
 
-Update the `MEMBERS` array in `src/data/content.ts`:
+Team members live in `src/data/members.ts` as a typed, bilingual array with slugs (used
+for each member's `/people/:slug/` detail page and JSON-LD `Person` data):
 
 ```typescript
-export const MEMBERS = [
+export const MEMBERS: Member[] = [
   {
-    id: 1,
-    name: "Name (中文名)",
+    slug: "jane-doe",
+    name_zh: "中文名",
+    name_en: "Jane Doe",
     role_zh: "職位",
     role_en: "Position",
-    image: "https://...",
-    tags: ["Tag1", "Tag2"]
+    bio_zh: "...",
+    bio_en: "...",
+    image: "/images/members/jane-doe.jpg",
+    url: "https://...",
   },
   // Add more members...
 ];
@@ -171,12 +205,13 @@ export const MEMBERS = [
 
 **📖 See [HOW_TO_ADD_EVENTS.md](./HOW_TO_ADD_EVENTS.md) for a comprehensive guide!**
 
-**Each event is stored in its own `.ts` file** for easy management:
+**Each event is stored in its own `.ts` file** for easy management, and is discovered and
+validated automatically at build time by `src/data/events/index.ts`:
 
 1. Copy `src/data/events/_template.ts`
 2. Rename it (e.g., `lecture-2025-12-20.ts`)
 3. Fill in the event details
-4. Add import to `src/data/events/index.ts`
+4. Save — no import to register the file is needed, it is picked up by the glob loader
 
 ```typescript
 // File: src/data/events/lecture-2025-12-20.ts
@@ -199,9 +234,10 @@ export default event;
 
 **Key Points:**
 - The latest 3 events automatically appear on the homepage
-- All events are viewable at `/event` page
-- Each event gets its own detail page at `/event/:eventId`
+- All events are viewable at `/event` (zh) and `/en/event` (en)
+- Each event gets its own detail page at `/event/:id/` and `/en/event/:id/`
 - Events are automatically organized by year on the archive page
+- Tag speakers who are lab members (see `HOW_TO_ADD_EVENTS.md`) so they get linked to their `/people/:slug/` page and included in the event's JSON-LD
 
 ### Creating New Components
 
@@ -217,7 +253,7 @@ export const MyComponent: React.FC<MyComponentProps> = ({ title, lang }) => {
   return <div>{title}</div>;
 };
 ```
-3. Import and use it in `App.tsx` or other components
+3. Import and use it as a React island (`client:load`) from an `.astro` page, or compose it directly in an `.astro` file
 
 ### Adding Animations
 
@@ -228,11 +264,17 @@ The project uses Intersection Observer for scroll animations. The `BentoBox` com
 
 ## 🌐 Bilingual Support
 
-The website supports seamless language switching between English and Traditional Chinese:
+The website supports Traditional Chinese and English as two fully static, statically-rendered locales:
 
-- Language switcher in the navigation bar
-- All content managed through a centralized `Lang` type system
-- URL hash-based navigation works in both languages
+- Traditional Chinese at the site root (`/...`), English under `/en/...`
+- Language switcher in the navigation bar links between the equivalent zh/en path
+- Every page declares reciprocal `hreflang` alternates and a canonical URL (see `docs/SEO.md`)
+
+## 🔍 SEO
+
+**📖 See [docs/SEO.md](./docs/SEO.md)** for how metadata (titles, descriptions, JSON-LD)
+flows from data files to rendered pages, the one-time Google Search Console / Bing
+Webmaster Tools setup, and how to validate structured data.
 
 ## 🎯 Key Features
 
@@ -240,10 +282,10 @@ The website supports seamless language switching between English and Traditional
 - ✅ Bilingual (EN/ZH-TW) with easy content management
 - ✅ Modern Bento grid layouts
 - ✅ Smooth scroll animations
-- ✅ Optimized for performance
+- ✅ SEO metadata, sitemap, and structured data out of the box
 - ✅ Type-safe with TypeScript
 - ✅ Hot module reloading for fast development
-- ✅ Production-ready build system
+- ✅ Production-ready static build
 
 ## 🤝 Contributing
 
@@ -255,10 +297,10 @@ The website supports seamless language switching between English and Traditional
 
 ## 📝 Notes
 
-- **TailwindCSS v4**: This project uses TailwindCSS v4 with the new `@tailwindcss/postcss` plugin
+- **TailwindCSS v4**: This project uses TailwindCSS v4 with the new `@tailwindcss/postcss`/`@tailwindcss/vite` plugin
 - **Content Updates**: Non-developers can safely update `src/data/content.ts` without touching component code
 - **Icon System**: Uses Lucide React for consistent, lightweight icons
-- **Image Hosting**: Update image URLs in `content.ts` to use your preferred image hosting service
+- **Image Hosting**: Update image URLs in `content.ts` / `members.ts` / event files to use your preferred image hosting service
 
 ## 📄 License
 

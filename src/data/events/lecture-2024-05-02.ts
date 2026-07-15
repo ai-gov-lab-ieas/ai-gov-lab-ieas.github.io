@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "lecture-2024-05-02",
@@ -34,6 +34,12 @@ Abstract: With the expansion and diversification of artificial intelligence appl
 Date & Time: Thursday, May 2, 2024, 10:00 AM
 
 Venue: 1F Meeting Room, Institute of European and American Studies, Academia Sinica`,
+
+  speakers: [
+    { name_zh: "郭戎晉", name_en: "Jung-Chin Kuo", affiliation_zh: "南臺科技大學財經法律研究所", affiliation_en: "Graduate Institute of Financial and Economic Law, Southern Taiwan University of Science & Technology" },
+    { member: "chih-hsing-ho" },
+    { member: "hung-ju-chen" },
+  ],
 };
 
 export default event;

@@ -1,14 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, ChevronRight } from 'lucide-react';
-import { Lang, CONTENT, POSTS } from '../data/content';
+import { CONTENT } from '../data/content';
+import type { Locale } from '../config';
+import type { Event } from '../data/events/types';
+import { localePath } from '../lib/i18n';
 import { formatDate } from '../utils/dateFormat';
 
-export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
-  const t = CONTENT[lang].activities;
+interface ActivitiesProps {
+  lang: Locale;
+  posts: Event[]; // latest 3, pre-sliced by the caller
+}
 
-  // Show only the latest 3 events
-  const latestPosts = POSTS.slice(0, 3);
+export const Activities = ({ lang, posts }: ActivitiesProps) => {
+  const t = CONTENT[lang].activities;
 
   return (
     <section id="events" className="py-24 bg-white relative">
@@ -17,26 +20,25 @@ export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
           {t.title}
         </h2>
 
-        {/* Grid Layout for Latest 3 Events */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map((post) => (
-            <Link
+          {posts.map((post) => (
+            <a
               key={post.id}
-              to={`/event/${post.id}`}
+              href={localePath(lang, `/event/${post.id}/`)}
               className="group cursor-pointer bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               <div className="aspect-square overflow-hidden bg-slate-100 relative">
-                {/* Blurred background */}
                 <img
                   src={post.image}
                   alt=""
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-60"
                   aria-hidden="true"
                 />
-                {/* Main image */}
                 <img
                   src={post.image}
                   alt={lang === 'zh' ? post.title_zh : post.title_en}
+                  loading="lazy"
                   className="relative w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-900 shadow-sm uppercase tracking-wide">
@@ -59,19 +61,18 @@ export const Activities: React.FC<{ lang: Lang }> = ({ lang }) => {
                   {t.read_more} <ArrowRight size={14} className="ml-1" />
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
 
-        {/* View All Events Button */}
         <div className="mt-12 text-center">
-          <Link
-            to="/event"
+          <a
+            href={localePath(lang, '/event/')}
             className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full hover:bg-blue-600 transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105"
           >
             {lang === 'zh' ? '查看所有活動' : 'View All Events'}
             <ChevronRight size={18} />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

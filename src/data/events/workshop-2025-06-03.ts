@@ -1,4 +1,4 @@
-import { Event } from './types';
+import type { Event } from './types';
 
 export const event: Event = {
   id: "workshop-2025-06-03",
@@ -52,6 +52,20 @@ Dr. Jung-Chin Kuo (Associate Professor / Institute of Financial & Economic Law (
 Link to agenda: <a href="https://www.ea.sinica.edu.tw/Admin/ashx/GetFile.ashx?ID=57052" target="_blank" rel="noopener noreferrer">https://www.ea.sinica.edu.tw/Admin/ashx/GetFile.ashx?ID=57052</a>
 
 `,
+
+  speakers: [
+    { name_zh: "Calvin Ho", name_en: "Calvin Ho", affiliation_zh: "蒙納許大學法學院", affiliation_en: "Monash Law" },
+    { member: "bow-yaw-wang" },
+    { member: "tyng-ruey-chuang" },
+    { name_zh: "黃瀚萱", name_en: "Hen-Hsen Huang", affiliation_zh: "中央研究院資訊科學研究所", affiliation_en: "Institute of Information Science, Academia Sinica" },
+    { name_zh: "蔡宗翰", name_en: "Tzong-Han Tsai", affiliation_zh: "中央研究院人文社會科學研究中心", affiliation_en: "Research Center for Humanities and Social Sciences, Academia Sinica" },
+    { name_zh: "陳禹仲", name_en: "Alvin Chen", affiliation_zh: "中央研究院人文社會科學研究中心", affiliation_en: "Research Center for Humanities and Social Sciences, Academia Sinica" },
+    { member: "tzu-wei-hung" },
+    { member: "chih-hsing-ho" },
+    { name_zh: "李怡俐", name_en: "Yi-Li Lee", affiliation_zh: "國立清華大學科技法律研究所", affiliation_en: "Institute of Law for Science and Technology, National Tsing Hua University" },
+    { name_zh: "林昕璇", name_en: "Hsin-Hsuan Lin", affiliation_zh: "國立成功大學政治學系", affiliation_en: "Department of Political Science, National Cheng Kung University" },
+    { name_zh: "郭戎晉", name_en: "Jung-Chin Kuo", affiliation_zh: "南臺科技大學財經法律研究所", affiliation_en: "Institute of Financial & Economic Law (IFEL), Southern Taiwan University of Science & Technology (STUST)" },
+  ],
 };
 
 export default event;

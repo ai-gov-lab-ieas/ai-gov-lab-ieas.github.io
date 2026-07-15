@@ -1,0 +1,10 @@
+---
+import { POSTS } from '../../../data/events/loader';
+import EventDetailPage from '../../../templates/EventDetailPage.astro';
+
+export function getStaticPaths() {
+  return POSTS.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+---
+<EventDetailPage locale="en" post={post} />

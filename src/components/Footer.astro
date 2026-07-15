@@ -1,0 +1,26 @@
+---
+import { Brain } from 'lucide-react';
+import { CONTENT } from '../data/content';
+import type { Locale } from '../config';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = CONTENT[locale].footer;
+const year = new Date().getFullYear();
+---
+<footer class="bg-slate-900 text-white py-20 px-4 mt-12">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+    <div>
+      <div class="flex items-center gap-2 mb-6">
+        <Brain className="text-blue-500" />
+        <span class="text-xl font-bold">{t.name}</span>
+      </div>
+      <p class="text-slate-400 max-w-md leading-relaxed text-sm">
+        {t.location}
+      </p>
+    </div>
+    <div class="text-sm text-slate-500">
+      © {year} IEAS. {t.rights}
+    </div>
+  </div>
+</footer>
