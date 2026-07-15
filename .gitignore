@@ -26,6 +26,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 docs/superpowers/*
+.superpowers/*
 
 # Editor directories and files
 .vscode/
