@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { POSTS } from '../data/events/loader';
 import { MEMBERS } from '../data/members';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { eventLd, breadcrumbLd, metaDescription } from '../lib/seo';
+import { eventLd, breadcrumbLd, metaDescription, SITE_SUFFIX_EN } from '../lib/seo';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
 import type { Event } from '../data/events/types';
@@ -13,7 +13,7 @@ interface Props { locale: Locale; post: Event }
 const { locale, post } = Astro.props;
 const zh = locale === 'zh';
 
-const title = `${zh ? post.title_zh : post.title_en} - ${zh ? 'AI 治理觀念實驗室' : 'AI Governance Laboratory'}`;
+const title = `${zh ? post.title_zh : post.title_en} - ${zh ? 'AI 治理觀念實驗室' : SITE_SUFFIX_EN}`;
 const description = metaDescription(zh ? post.content_zh : post.content_en);
 const relatedPosts = POSTS.filter((p) => p.year === post.year && p.id !== post.id).slice(0, 3);
 
