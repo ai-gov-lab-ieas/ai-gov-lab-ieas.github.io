@@ -36,9 +36,16 @@ describe('personLd', () => {
 });
 
 describe('organizationLd', () => {
-  it('names the lab and its parent institute', () => {
+  it('names the lab and its parent institute on EN', () => {
     const ld = organizationLd('en') as any;
     expect(ld.name).toBe('AI Governance Laboratory');
+    expect(ld.alternateName).toBe('AI 治理觀念實驗室');
+    expect(ld.parentOrganization.url).toBe('https://www.ea.sinica.edu.tw/');
+  });
+  it('names the lab and its parent institute on ZH', () => {
+    const ld = organizationLd('zh') as any;
+    expect(ld.name).toBe('AI 治理觀念實驗室');
+    expect(ld.alternateName).toBe('AI Governance Laboratory');
     expect(ld.parentOrganization.url).toBe('https://www.ea.sinica.edu.tw/');
   });
 });
