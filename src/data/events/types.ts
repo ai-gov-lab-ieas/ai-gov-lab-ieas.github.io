@@ -1,3 +1,5 @@
+import type { SeoOverride } from '../../lib/seo';
+
 // Event type definition
 export interface EventSpeaker {
   member?: string;         // slug of a lab member (see src/data/members.ts)
@@ -22,4 +24,5 @@ export interface Event {
   location_en?: string;
   abstract_zh?: string;    // optional talk abstract, shown on the event page
   abstract_en?: string;
+  seo?: SeoOverride;       // optional hand-tuned metadata (see src/lib/seo.ts)
 }

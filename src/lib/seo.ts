@@ -37,6 +37,40 @@ export function metaDescription(text: string, max = 155): string {
   return cut.slice(0, cut.lastIndexOf(' ') > 60 ? cut.lastIndexOf(' ') : max - 1) + '…';
 }
 
+// Optional hand-tuned SEO overrides for a single event or member page.
+// Every field is optional; absent fields fall back to the derived value,
+// so a new event/member still requires only its data file.
+export interface SeoOverride {
+  title_zh?: string;        // page-name part only — the brand suffix is still appended
+  title_en?: string;
+  description_zh?: string;  // replaces metaDescription(content/bio) everywhere summaries appear
+  description_en?: string;
+  ogImageAlt_zh?: string;
+  ogImageAlt_en?: string;
+}
+
+export function resolvePageSeo(args: {
+  seo?: SeoOverride;
+  locale: Locale;
+  fallbackTitle: string;
+  fallbackDescription: string;
+  fallbackOgImageAlt: string;
+}): { title: string; description: string; ogImageAlt: string } {
+  const { seo, locale, fallbackTitle, fallbackDescription, fallbackOgImageAlt } = args;
+  const zh = locale === 'zh';
+  return {
+    title: (zh ? seo?.title_zh : seo?.title_en) ?? fallbackTitle,
+    description: (zh ? seo?.description_zh : seo?.description_en) ?? fallbackDescription,
+    ogImageAlt: (zh ? seo?.ogImageAlt_zh : seo?.ogImageAlt_en) ?? fallbackOgImageAlt,
+  };
+}
+
+export function eventDescription(event: Event, locale: Locale, max: number): string {
+  const override = locale === 'zh' ? event.seo?.description_zh : event.seo?.description_en;
+  if (override) return override;
+  return metaDescription(locale === 'zh' ? event.content_zh : event.content_en, max);
+}
+
 export function organizationLd(locale: Locale) {
   return {
     '@context': 'https://schema.org',
