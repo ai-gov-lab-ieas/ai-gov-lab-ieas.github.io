@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, MapPin, User } from 'lucide-react';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { POSTS } from '../data/events/loader';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { eventLd, breadcrumbLd, metaDescription, SITE_SUFFIX_EN } from '../lib/seo';
+import { eventLd, breadcrumbLd, metaDescription, resolvePageSeo, SITE_SUFFIX_EN } from '../lib/seo';
 import { resolveSpeaker } from '../lib/render';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
@@ -13,8 +13,15 @@ interface Props { locale: Locale; post: Event }
 const { locale, post } = Astro.props;
 const zh = locale === 'zh';
 
-const title = `${zh ? post.title_zh : post.title_en} - ${zh ? 'AI 治理觀念實驗室' : SITE_SUFFIX_EN}`;
-const description = metaDescription(zh ? post.content_zh : post.content_en);
+const resolved = resolvePageSeo({
+  seo: post.seo,
+  locale,
+  fallbackTitle: zh ? post.title_zh : post.title_en,
+  fallbackDescription: metaDescription(zh ? post.content_zh : post.content_en),
+  fallbackOgImageAlt: zh ? post.title_zh : post.title_en,
+});
+const title = `${resolved.title} - ${zh ? 'AI 治理觀念實驗室' : SITE_SUFFIX_EN}`;
+const description = resolved.description;
 const relatedPosts = POSTS.filter((p) => p.year === post.year && p.id !== post.id).slice(0, 3);
 
 const speakers = (post.speakers ?? []).map((s) => {
@@ -40,6 +47,9 @@ const jsonLd = [
   title={title}
   description={description}
   ogImage={post.image}
+  ogImageAlt={resolved.ogImageAlt}
+  ogType="article"
+  publishedTime={post.date}
   jsonLd={jsonLd}
 >
   <div class="min-h-screen bg-[#FAFAFA] pt-24">

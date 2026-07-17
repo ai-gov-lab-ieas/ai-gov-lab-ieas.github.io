@@ -59,15 +59,45 @@ event pages (`Event` structured data) and member pages (`Person` structured data
 
 | Page type | Title / description source | JSON-LD source |
 |---|---|---|
-| Home (`/`, `/en/`) | Hard-coded in `src/pages/index.astro` / `src/pages/en/index.astro` | `organizationLd()` in `src/lib/seo.ts`, called from `BaseLayout.astro` on every page |
-| Event list (`/event/`, `/en/event/`) | Hard-coded in `src/pages/event/index.astro` / `src/pages/en/event/index.astro` | `organizationLd()` only |
-| Event detail (`/event/:id/`, `/en/event/:id/`) | Derived from the event's `title_zh`/`title_en` and `content_zh`/`content_en` (via `metaDescription()`) in `src/data/events/*.ts` | `eventLd()` in `src/lib/seo.ts`, built from the same event record plus any tagged `src/data/members.ts` speakers |
-| People list (`/people/`, `/en/people/`) | Hard-coded in `src/pages/people/index.astro` / `src/pages/en/people/index.astro` | `organizationLd()` only |
-| Member detail (`/people/:slug/`, `/en/people/:slug/`) | Derived from the member's `name_zh`/`name_en` and `role_zh`/`role_en` in `src/data/members.ts` | `personLd()` in `src/lib/seo.ts`, built from the same member record |
-| 404 (`/404/`) | Hard-coded in `src/pages/404.astro` | `organizationLd()` only, plus `<meta name="robots" content="noindex">` via the `head` slot |
+| Home (`/`, `/en/`) | `PAGE_SEO` registry in `src/data/pageSeo.ts` (hand-tuned per locale) | `organizationLd()` in `src/lib/seo.ts`, called from `BaseLayout.astro` on every page |
+| Event list (`/event/`, `/en/event/`) | `PAGE_SEO` registry in `src/data/pageSeo.ts` (hand-tuned per locale) | `organizationLd()` only |
+| Event detail (`/event/:id/`, `/en/event/:id/`) | Derived from the event's `title_zh`/`title_en` and `content_zh`/`content_en` (via `metaDescription()`) in `src/data/events/*.ts`; optional `seo` override block on the event record (resolved by `resolvePageSeo()` in `src/lib/seo.ts`) | `eventLd()` in `src/lib/seo.ts`, built from the same event record plus any tagged `src/data/members.ts` speakers |
+| People list (`/people/`, `/en/people/`) | `PAGE_SEO` registry in `src/data/pageSeo.ts` (hand-tuned per locale) | `organizationLd()` only |
+| Member detail (`/people/:slug/`, `/en/people/:slug/`) | Derived from the member's `name_zh`/`name_en` and `role_zh`/`role_en` in `src/data/members.ts`; optional `seo` override block on the member record | `personLd()` in `src/lib/seo.ts`, built from the same member record |
+| 404 (`/404/`) | `PAGE_SEO` registry in `src/data/pageSeo.ts` (hand-tuned per locale) | `organizationLd()` only, plus `<meta name="robots" content="noindex">` via the `head` slot |
 
 Every page also gets `organizationLd()` for free, plus canonical/hreflang/Open Graph tags,
 from `BaseLayout.astro`.
+
+## Social share tags
+
+`BaseLayout.astro` emits the full Open Graph and Twitter card set on every page:
+`og:type` (`website` by default; `article` on event pages with `article:published_time`,
+`profile` on member pages with `profile:first_name`/`profile:last_name`), `og:image` with
+`og:image:alt`, and `twitter:card`/`twitter:title`/`twitter:description`/`twitter:image`.
+
+Pages without their own image (home, list pages, 404) fall back to the site-wide share
+card `public/images/og-default.png` (1200×630 — the only image whose
+`og:image:width`/`og:image:height` are asserted). Event and member pages use their own
+`image` field. The favicon set is `public/favicon.svg` + `public/apple-touch-icon.png`.
+
+## Overriding metadata for a single event or member
+
+Add an optional `seo` block to the record in `src/data/events/*.ts` or
+`src/data/members.ts`:
+
+```ts
+seo: {
+  title_en: 'Hand-tuned page name',        // brand suffix is still appended
+  description_en: 'Hand-tuned summary.',   // also feeds JSON-LD description and the Atom <summary>
+  ogImageAlt_en: 'Alt text for the share image',
+  // …and/or the _zh variants
+},
+```
+
+Absent fields fall back to the derived values, so the block is never required. Overrides
+do **not** change the markdown mirrors or the Atom `<content>` — those always render the
+full content.
 
 ## Backlink note
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { organizationLd, personLd, eventLd, breadcrumbLd, metaDescription } from '../src/lib/seo';
+import { organizationLd, personLd, eventLd, breadcrumbLd, metaDescription, resolvePageSeo, eventDescription } from '../src/lib/seo';
 import { MEMBERS } from '../src/data/members';
 import { SITE_URL } from '../src/config';
 import type { Event } from '../src/data/events/types';
@@ -63,5 +63,61 @@ describe('metaDescription', () => {
     const out = metaDescription(text);
     expect(out.length).toBeLessThanOrEqual(155);
     expect(out).not.toContain('\n');
+  });
+});
+
+describe('resolvePageSeo', () => {
+  const fallbacks = { fallbackTitle: 'T', fallbackDescription: 'D', fallbackOgImageAlt: 'A' };
+
+  it('passes fallbacks through when no seo block exists', () => {
+    expect(resolvePageSeo({ locale: 'zh', ...fallbacks }))
+      .toEqual({ title: 'T', description: 'D', ogImageAlt: 'A' });
+  });
+
+  it('applies a full override per locale', () => {
+    const seo = {
+      title_zh: '標題', title_en: 'Title',
+      description_zh: '描述', description_en: 'Desc',
+      ogImageAlt_zh: '圖', ogImageAlt_en: 'Alt',
+    };
+    expect(resolvePageSeo({ seo, locale: 'en', ...fallbacks }))
+      .toEqual({ title: 'Title', description: 'Desc', ogImageAlt: 'Alt' });
+    expect(resolvePageSeo({ seo, locale: 'zh', ...fallbacks }))
+      .toEqual({ title: '標題', description: '描述', ogImageAlt: '圖' });
+  });
+
+  it('mixes a partial override with fallbacks', () => {
+    expect(resolvePageSeo({ seo: { description_en: 'Desc' }, locale: 'en', ...fallbacks }))
+      .toEqual({ title: 'T', description: 'Desc', ogImageAlt: 'A' });
+  });
+
+  it('does not leak the other locale\'s override', () => {
+    expect(resolvePageSeo({ seo: { title_en: 'Title' }, locale: 'zh', ...fallbacks }).title).toBe('T');
+  });
+});
+
+describe('eventDescription', () => {
+  it('falls back to truncated content', () => {
+    expect(eventDescription(event, 'en', 300)).toBe(metaDescription('Content', 300));
+  });
+
+  it('uses the seo override verbatim, per locale', () => {
+    const e = { ...event, seo: { description_en: 'Hand-tuned.' } };
+    expect(eventDescription(e, 'en', 300)).toBe('Hand-tuned.');
+    expect(eventDescription(e, 'zh', 300)).toBe(metaDescription('內容', 300));
+  });
+});
+
+describe('seo description overrides in JSON-LD', () => {
+  it('eventLd honors seo.description_en', () => {
+    const e = { ...event, seo: { description_en: 'Tuned event.' } };
+    expect((eventLd(e, 'en') as any).description).toBe('Tuned event.');
+    expect((eventLd(event, 'en') as any).description).toBe(metaDescription('Content', 300));
+  });
+
+  it('personLd honors seo.description_zh', () => {
+    const m = { ...MEMBERS[0], seo: { description_zh: '調校後簡介。' } };
+    expect((personLd(m, 'zh') as any).description).toBe('調校後簡介。');
+    expect((personLd(MEMBERS[0], 'zh') as any).description).toBe(MEMBERS[0].bio_zh);
   });
 });

@@ -4,20 +4,20 @@ import Hero from '../components/Hero.astro';
 import { Activities } from '../components/Activities';
 import { Mission } from '../components/Mission';
 import { Team } from '../components/Team';
-import { CONTENT } from '../data/content';
 import { POSTS } from '../data/events/loader';
+import { PAGE_SEO } from '../data/pageSeo';
 import type { Locale } from '../config';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const t = CONTENT[locale];
 const latest = POSTS.slice(0, 3);
 ---
 <BaseLayout
   locale={locale}
   path="/"
-  title={t.site.title}
-  description={t.hero.desc}
+  title={PAGE_SEO.home[locale].title}
+  description={PAGE_SEO.home[locale].description}
+  ogImageAlt={PAGE_SEO.home[locale].ogImageAlt}
 >
   <main>
     <Hero locale={locale} />

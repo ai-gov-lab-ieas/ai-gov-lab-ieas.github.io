@@ -1,3 +1,5 @@
+import type { SeoOverride } from '../lib/seo';
+
 export interface Member {
   slug: string;        // URL segment: /people/<slug>/
   name: string;        // "Chih-Hsing Ho (何之行)" — combined display name
@@ -14,6 +16,7 @@ export interface Member {
   bio_en: string;
   url: string;         // official institutional profile (used as sameAs)
   tags: string[];
+  seo?: SeoOverride;   // optional hand-tuned metadata (see src/lib/seo.ts)
 }
 
 export const MEMBERS: Member[] = [

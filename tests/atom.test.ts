@@ -122,3 +122,17 @@ describe('buildAtomFeed', () => {
     expect(xml).not.toContain('A & B <c>');
   });
 });
+
+describe('seo override in feed summary', () => {
+  const base: Event = {
+    id: 'lecture-2099-02-02', date: '2099-02-02', year: '2099', type: 'Lecture',
+    image: '/images/x.jpg', title_zh: '講題', title_en: 'Talk',
+    content_zh: '內容', content_en: 'Content',
+  };
+
+  it('entry <summary> uses the override; <content> keeps full content', () => {
+    const xml = buildAtomFeed('en', [{ ...base, seo: { description_en: 'Tuned summary.' } }]);
+    expect(xml).toContain('<summary type="text">Tuned summary.</summary>');
+    expect(xml).toContain('<content type="html">Content</content>');
+  });
+});

@@ -254,6 +254,22 @@ missing field.
 ✅ **Type-safe**: TypeScript ensures all fields are correct, and the build validates speaker
 slugs and other constraints
 
+## Optional: hand-tuned SEO for one event
+
+Events get their `<title>` and meta description derived automatically from
+`title_zh`/`title_en` and `content_zh`/`content_en`. For an event that deserves crafted
+copy (e.g., a flagship conference), add an optional `seo` block:
+
+```ts
+seo: {
+  description_zh: '一句手工撰寫的摘要，會用於 meta description、JSON-LD 與 Atom 摘要。',
+  description_en: 'A hand-written summary used for the meta description, JSON-LD, and Atom summary.',
+},
+```
+
+All six fields (`title_zh/en`, `description_zh/en`, `ogImageAlt_zh/en`) are optional;
+anything you omit falls back to the derived value. See `docs/SEO.md` for details.
+
 ## Need Help?
 
 1. Check the `_template.ts` file for guidance

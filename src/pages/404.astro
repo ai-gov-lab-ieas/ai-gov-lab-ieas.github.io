@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_NAME_BILINGUAL_EN } from '../lib/seo';
+import { PAGE_SEO } from '../data/pageSeo';
 ---
 <BaseLayout
   locale="zh"
   path="/404/"
-  title={`404 - ${SITE_NAME_BILINGUAL_EN}`}
-  description="找不到這個頁面 / Page not found"
+  title={PAGE_SEO.notFound.zh.title}
+  description={PAGE_SEO.notFound.zh.description}
+  ogImageAlt={PAGE_SEO.notFound.zh.ogImageAlt}
 >
   <meta slot="head" name="robots" content="noindex" />
   <main class="min-h-screen bg-[#FAFAFA] pt-24 flex items-center justify-center px-4">

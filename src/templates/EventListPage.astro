@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { CONTENT } from '../data/content';
 import { POSTS } from '../data/events/loader';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { breadcrumbLd, SITE_SUFFIX_EN } from '../lib/seo';
+import { breadcrumbLd } from '../lib/seo';
+import { PAGE_SEO } from '../data/pageSeo';
 import { formatDate } from '../utils/dateFormat';
 import type { Locale } from '../config';
 
@@ -19,12 +20,6 @@ const postsByYear = POSTS.reduce<Record<string, typeof POSTS>>((acc, post) => {
 }, {});
 const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
-const title = zh
-  ? `學術活動 - AI 治理觀念實驗室`
-  : `Events - ${SITE_SUFFIX_EN}`;
-const description = zh
-  ? `AI 治理觀念實驗室的演講、研討會與工作坊，共 ${POSTS.length} 場活動。`
-  : `Lectures, conferences, and workshops of the AI Governance Laboratory — ${POSTS.length} events.`;
 const jsonLd = [
   breadcrumbLd([
     { name: zh ? '首頁' : 'Home', url: absoluteUrl(locale, '/') },
@@ -32,7 +27,14 @@ const jsonLd = [
   ]),
 ];
 ---
-<BaseLayout locale={locale} path="/event/" title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout
+  locale={locale}
+  path="/event/"
+  title={PAGE_SEO.eventList[locale].title}
+  description={PAGE_SEO.eventList[locale].description(POSTS.length)}
+  ogImageAlt={PAGE_SEO.eventList[locale].ogImageAlt}
+  jsonLd={jsonLd}
+>
   <div class="min-h-screen bg-[#FAFAFA] pt-24">
     <div class="max-w-6xl mx-auto px-4 md:px-8 py-12">
       <div class="mb-12">
