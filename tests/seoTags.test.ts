@@ -40,3 +40,32 @@ describe('default OG/Twitter tags (pages without their own image)', () => {
     expect(html).toContain('property="og:image" content="https://ai-gov-lab-ieas.github.io/images/og-default.png"');
   });
 });
+
+describe('per-type OG tags on detail pages', () => {
+  it('event page is og:type article with article:published_time', () => {
+    const html = read('event/lecture-2024-03-20/index.html');
+    expect(html).toContain('property="og:type" content="article"');
+    expect(html).toContain('property="article:published_time" content="2024-03-20"');
+    // custom event image → no asserted dimensions
+    expect(html).not.toContain('og:image:width');
+  });
+
+  it('person page is og:type profile with profile name parts', () => {
+    const html = read('people/chih-hsing-ho/index.html');
+    expect(html).toContain('property="og:type" content="profile"');
+    expect(html).toContain('property="profile:first_name" content="Chih-Hsing"');
+    expect(html).toContain('property="profile:last_name" content="Ho"');
+  });
+});
+
+describe('static pages read PAGE_SEO copy', () => {
+  it('EN homepage title is the institutional name', () => {
+    const html = read('en/index.html');
+    expect(html).toContain('<title>AI Governance Laboratory, IEAS, Academia Sinica</title>');
+  });
+
+  it('ZH event list description carries the live event count', () => {
+    const html = read('event/index.html');
+    expect(html).toMatch(/name="description" content="[^"]*共 \d+ 場學術活動[^"]*"/);
+  });
+});

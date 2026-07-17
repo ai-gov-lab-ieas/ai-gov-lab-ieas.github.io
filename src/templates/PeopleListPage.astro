@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { CONTENT } from '../data/content';
 import { MEMBERS } from '../data/members';
 import { localePath, absoluteUrl } from '../lib/i18n';
-import { breadcrumbLd, SITE_SUFFIX_EN } from '../lib/seo';
+import { breadcrumbLd } from '../lib/seo';
+import { PAGE_SEO } from '../data/pageSeo';
 import type { Locale } from '../config';
 
 interface Props { locale: Locale }
@@ -12,10 +13,6 @@ const { locale } = Astro.props;
 const zh = locale === 'zh';
 const t = CONTENT[locale].team;
 
-const title = zh ? '參與成員 - AI 治理觀念實驗室' : `Team - ${SITE_SUFFIX_EN}`;
-const description = zh
-  ? 'AI 治理觀念實驗室成員：中央研究院跨領域研究人員，涵蓋法律、哲學、倫理學與資訊科學。'
-  : 'Members of the AI Governance Laboratory — interdisciplinary researchers at Academia Sinica across law, philosophy, ethics, and computer science.';
 const jsonLd = [
   breadcrumbLd([
     { name: zh ? '首頁' : 'Home', url: absoluteUrl(locale, '/') },
@@ -23,7 +20,14 @@ const jsonLd = [
   ]),
 ];
 ---
-<BaseLayout locale={locale} path="/people/" title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout
+  locale={locale}
+  path="/people/"
+  title={PAGE_SEO.peopleList[locale].title}
+  description={PAGE_SEO.peopleList[locale].description}
+  ogImageAlt={PAGE_SEO.peopleList[locale].ogImageAlt}
+  jsonLd={jsonLd}
+>
   <div class="min-h-screen bg-[#FAFAFA] pt-24">
     <div class="max-w-6xl mx-auto px-4 md:px-8 py-12">
       <div class="mb-12">
