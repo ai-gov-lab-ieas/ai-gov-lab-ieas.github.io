@@ -43,7 +43,7 @@ export function metaDescription(text: string, max = 155): string {
 export interface SeoOverride {
   title_zh?: string;        // page-name part only — the brand suffix is still appended
   title_en?: string;
-  description_zh?: string;  // replaces metaDescription(content/bio) everywhere summaries appear
+  description_zh?: string;  // replaces metaDescription(content/bio) in the meta description, JSON-LD, and Atom <summary>
   description_en?: string;
   ogImageAlt_zh?: string;
   ogImageAlt_en?: string;
