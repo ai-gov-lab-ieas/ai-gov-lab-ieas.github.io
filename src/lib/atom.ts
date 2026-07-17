@@ -2,7 +2,7 @@ import type { Event } from '../data/events/types';
 import type { Locale } from '../config';
 import { CONTENT } from '../data/content';
 import { absoluteUrl } from './i18n';
-import { metaDescription, SITE_SUFFIX_EN } from './seo';
+import { eventDescription, SITE_SUFFIX_EN } from './seo';
 
 const TAG_AUTHORITY = 'ai-gov-lab-ieas.github.io';
 const TAG_YEAR = '2026'; // frozen forever — do not rotate
@@ -40,7 +40,7 @@ function maxDate(posts: Event[]): string {
 function entryXml(event: Event, locale: Locale): string {
   const title = locale === 'zh' ? event.title_zh : event.title_en;
   const content = locale === 'zh' ? event.content_zh : event.content_en;
-  const summary = metaDescription(content, 200);
+  const summary = eventDescription(event, locale, 200);
   const contentHtml = content.replace(/\n/g, '<br />');
   const url = absoluteUrl(locale, `/event/${event.id}/`);
   const stamp = rfc3339(event.date);

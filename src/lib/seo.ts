@@ -94,7 +94,7 @@ export function personLd(member: Member, locale: Locale) {
     name: locale === 'zh' ? member.name_zh : member.name_en,
     alternateName: locale === 'zh' ? member.name_en : member.name_zh,
     jobTitle: locale === 'zh' ? member.role_zh : member.role_en,
-    description: locale === 'zh' ? member.bio_zh : member.bio_en,
+    description: (locale === 'zh' ? member.seo?.description_zh : member.seo?.description_en) ?? (locale === 'zh' ? member.bio_zh : member.bio_en),
     image: toAbsolute(member.image),
     url: absoluteUrl(locale, `/people/${member.slug}/`),
     sameAs: [member.url],
@@ -126,7 +126,7 @@ export function eventLd(event: Event, locale: Locale) {
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     image: toAbsolute(event.image),
-    description: metaDescription(locale === 'zh' ? event.content_zh : event.content_en, 300),
+    description: eventDescription(event, locale, 300),
     inLanguage: locale === 'zh' ? 'zh-Hant' : 'en',
     url: absoluteUrl(locale, `/event/${event.id}/`),
     location: {

@@ -107,3 +107,17 @@ describe('eventDescription', () => {
     expect(eventDescription(e, 'zh', 300)).toBe(metaDescription('內容', 300));
   });
 });
+
+describe('seo description overrides in JSON-LD', () => {
+  it('eventLd honors seo.description_en', () => {
+    const e = { ...event, seo: { description_en: 'Tuned event.' } };
+    expect((eventLd(e, 'en') as any).description).toBe('Tuned event.');
+    expect((eventLd(event, 'en') as any).description).toBe(metaDescription('Content', 300));
+  });
+
+  it('personLd honors seo.description_zh', () => {
+    const m = { ...MEMBERS[0], seo: { description_zh: '調校後簡介。' } };
+    expect((personLd(m, 'zh') as any).description).toBe('調校後簡介。');
+    expect((personLd(MEMBERS[0], 'zh') as any).description).toBe(MEMBERS[0].bio_zh);
+  });
+});
