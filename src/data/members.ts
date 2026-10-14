@@ -221,45 +221,6 @@ The study of wisdom holds both theoretical and practical value. On one hand, wis
     tags: [],
   },
   {
-    slug: 'jay-jian',
-    name: 'Jay Jian (簡士傑)',
-    name_en: 'Jay Jian',
-    name_zh: '簡士傑',
-    role_zh: '助研究員',
-    role_en: 'Assistant Research Fellow',
-    image: '/images/team/Jay-Jian.jpeg',
-    bio_zh: `## 主要經歷
-
-- 中央研究院歐美研究所助研究員（2022/08 迄今）
-- 國立清華大學哲學研究所專任助理教授（2021/08–2022/07）
-- 國立清華大學哲學研究所博士後研究員（2021/01–2021/07）
-- 牛津大學聖約翰學院無給講師（2016/10–2017/01；2017/10–2018/01）
-
-## 研究主題
-
-- 後設倫理學
-- 行動哲學
-- 倫理學
-- 理性
-- 規範性`,
-    bio_en: `## Professional Experience
-
-- Tenure-Track Assistant Research Fellow, Institute of European and American Studies, Academia Sinica (2022/08–)
-- Tenure-Track Assistant Professor, Institute of Philosophy, National Tsing Hua University (08/2021–07/2022)
-- Postdoctoral Researcher, Institute of Philosophy, National Tsing Hua University (01/2021–07/2021)
-- Non-stipendiary Lecturer, St John's College, University of Oxford (10/2016–01/2017; 10/2017–01/2018)
-
-## Areas of Expertise
-
-- Meta-ethics
-- Philosophy of Action
-- Ethics
-- Rationality
-- Normativity`,
-    url: 'https://www.ea.sinica.edu.tw/Content_People_Page.aspx?pid=4&uid=8&peoid=203&lang=e',
-    tags: [],
-  },
-  {
     slug: 'bow-yaw-wang',
     name: 'Bow-Yaw Wang (王柏堯)',
     name_en: 'Bow-Yaw Wang',
