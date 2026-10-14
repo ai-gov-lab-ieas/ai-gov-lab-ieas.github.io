@@ -18,7 +18,7 @@ describe('localePath', () => {
 
 describe('absoluteUrl', () => {
   it('joins SITE_URL and locale path', () => {
-    expect(absoluteUrl('en', '/people/jay-jian/')).toBe(`${SITE_URL}/en/people/jay-jian/`);
+    expect(absoluteUrl('en', '/people/chih-hsing-ho/')).toBe(`${SITE_URL}/en/people/chih-hsing-ho/`);
   });
 });
 

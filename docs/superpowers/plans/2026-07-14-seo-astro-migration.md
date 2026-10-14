@@ -214,7 +214,7 @@ git commit -m "feat: scaffold Astro, remove Vite SPA toolchain"
 - Modify: `src/data/content.ts` (remove `MEMBERS`), `src/components/Team.tsx` (import path only — full Team changes come in Task 6), `package.json` (add vitest)
 
 **Interfaces:**
-- Produces: `src/data/members.ts` exporting `interface Member { slug; name; name_en; name_zh; role_zh; role_en; image; bio_zh; bio_en; url; tags: string[] }` and `MEMBERS: Member[]`. Slugs (fixed, used by all later tasks): `chih-hsing-ho`, `cheng-hung-tsai`, `tzu-wei-hung`, `hung-ju-chen`, `jay-jian`, `bow-yaw-wang`, `tyng-ruey-chuang`.
+- Produces: `src/data/members.ts` exporting `interface Member { slug; name; name_en; name_zh; role_zh; role_en; image; bio_zh; bio_en; url; tags: string[] }` and `MEMBERS: Member[]`. Slugs (fixed, used by all later tasks): `chih-hsing-ho`, `cheng-hung-tsai`, `tzu-wei-hung`, `hung-ju-chen`, `bow-yaw-wang`, `tyng-ruey-chuang`.
 
 - [ ] **Step 1: Install vitest**
 
@@ -242,8 +242,8 @@ describe('MEMBERS', () => {
     }
   });
 
-  it('keeps all 7 current members', () => {
-    expect(MEMBERS).toHaveLength(7);
+  it('keeps all 6 current members', () => {
+    expect(MEMBERS).toHaveLength(6);
   });
 });
 ```
@@ -255,7 +255,7 @@ Expected: FAIL — cannot resolve `../src/data/members`.
 
 - [ ] **Step 4: Draft the bios**
 
-For each of the 7 members, fetch their institutional profile (the `url` field values are in `src/data/content.ts:127-205`) with WebFetch. Draft an 80–120 word `bio_zh` and `bio_en` **using only facts stated on the fetched page** (position, degrees, research areas, institution). Do not invent publications, awards, or dates. If a page cannot be fetched, write a two-sentence bio from the data we already have (name, role, institute) — e.g. zh: "何之行為中央研究院歐美研究所副研究員，並擔任 AI 治理觀念實驗室計畫主持人。研究領域涵蓋人工智慧治理、資料保護與科技法律。" / en: "Chih-Hsing Ho is an Associate Research Fellow at the Institute of European and American Studies, Academia Sinica, and coordinates the AI Governance Laboratory. Her work focuses on AI governance, data protection, and law and technology." — and note in the commit message which bios used the fallback. All bios are flagged for user review at the end of the plan regardless.
+For each of the 6 members, fetch their institutional profile (the `url` field values are in `src/data/content.ts:127-205`) with WebFetch. Draft an 80–120 word `bio_zh` and `bio_en` **using only facts stated on the fetched page** (position, degrees, research areas, institution). Do not invent publications, awards, or dates. If a page cannot be fetched, write a two-sentence bio from the data we already have (name, role, institute) — e.g. zh: "何之行為中央研究院歐美研究所副研究員，並擔任 AI 治理觀念實驗室計畫主持人。研究領域涵蓋人工智慧治理、資料保護與科技法律。" / en: "Chih-Hsing Ho is an Associate Research Fellow at the Institute of European and American Studies, Academia Sinica, and coordinates the AI Governance Laboratory. Her work focuses on AI governance, data protection, and law and technology." — and note in the commit message which bios used the fallback. All bios are flagged for user review at the end of the plan regardless.
 
 - [ ] **Step 5: Create src/data/members.ts**
 
@@ -288,9 +288,9 @@ export const MEMBERS: Member[] = [
     url: 'https://www.ea.sinica.edu.tw/people/Chih-hsing-Ho.aspx?lang=e',
     tags: [],
   },
-  // ...same shape for the remaining 6 members, copying name/role/image/url
+  // ...same shape for the remaining 5 members, copying name/role/image/url
   // verbatim from the MEMBERS array currently in src/data/content.ts:127-205,
-  // with slugs: cheng-hung-tsai, tzu-wei-hung, hung-ju-chen, jay-jian,
+  // with slugs: cheng-hung-tsai, tzu-wei-hung, hung-ju-chen,
   // bow-yaw-wang, tyng-ruey-chuang
 ];
 ```
@@ -554,7 +554,7 @@ describe('localePath', () => {
 
 describe('absoluteUrl', () => {
   it('joins SITE_URL and locale path', () => {
-    expect(absoluteUrl('en', '/people/jay-jian/')).toBe(`${SITE_URL}/en/people/jay-jian/`);
+    expect(absoluteUrl('en', '/people/chih-hsing-ho/')).toBe(`${SITE_URL}/en/people/chih-hsing-ho/`);
   });
 });
 
@@ -1711,7 +1711,7 @@ git commit -m "feat: tag existing events with speakers, update authoring docs"
 
 **Interfaces:**
 - Consumes: `MEMBERS`, `eventsBySpeaker` (Task 3), `personLd`, `breadcrumbLd` (Task 4), `BaseLayout`.
-- Produces: URLs `/people/`, `/people/<slug>/` and en mirrors for all 7 members.
+- Produces: URLs `/people/`, `/people/<slug>/` and en mirrors for all 6 members.
 
 - [ ] **Step 1: Create src/templates/PeopleListPage.astro**
 
@@ -2067,7 +2067,7 @@ grep -o "https://ai-gov-lab-ieas.github.io" astro.config.mjs src/config.ts
 test -f dist/sitemap-index.xml && echo sitemap-ok
 grep -o '<loc>[^<]*</loc>' dist/sitemap-0.xml | grep -c '/en/'
 grep -o '<loc>[^<]*</loc>' dist/sitemap-0.xml | wc -l
-# expected total: 2 × (1 home + 1 events + 13 event details + 1 people + 7 members) = 46 (+404)
+# expected total: 2 × (1 home + 1 events + 13 event details + 1 people + 6 members) = 44 (+404)
 # robots + 404
 test -f dist/robots.txt && test -f dist/404.html && echo infra-ok
 grep -c 'noindex' dist/404.html

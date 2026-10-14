@@ -15,7 +15,7 @@ describe('MEMBERS', () => {
     }
   });
 
-  it('keeps all 7 current members', () => {
-    expect(MEMBERS).toHaveLength(7);
+  it('keeps all 6 current members', () => {
+    expect(MEMBERS).toHaveLength(6);
   });
 });
